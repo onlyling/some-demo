@@ -18,7 +18,7 @@ var AppList = Vue.extend({
 	data: function() {
 		return {
 			items: ['1', '2', '3', '4', '5', '6', '7', '8'],
-			pageY: -100
+			pageY: 0
 		}
 	}
 });
@@ -29,20 +29,19 @@ Vue.directive('slide', {
 	},
 	update: function(pageY) {
 		console.log('update');
-		console.log(pageY);
 
 		var self = this,
-			selfEl = self.el,
-			_content = selfEl.getElementsByClassName('m-slide-content')[0];
+			selfEl = self.el;
+		self.content = selfEl.getElementsByClassName('m-slide-content')[0];
 
 		self.pageY = +pageY;
 
-		_content.style.transform = 'translate(0, ' + pageY + 'px)';
+		self.content.style.transform = 'translate(0, ' + pageY + 'px)';
 
-		var _bar = document.createElement('div');
-		_bar.className = 'm-slide-bar';
+		self.bar = document.createElement('div');
+		self.bar.className = 'm-slide-bar';
 
-		selfEl.appendChild(_bar);
+		selfEl.appendChild(self.bar);
 
 		var _startX = 0,
 			_startY = 0,
@@ -51,6 +50,14 @@ Vue.directive('slide', {
 
 		// 绑定事件
 		selfEl.addEventListener('touchstart', function(event) {
+			
+
+			self.maxBarTop = window.innerHeight - self.bar.offsetHeight;
+
+			self.height = self.content.offsetHeight;
+			self.maxPageH = self.height - window.innerHeight;
+
+			self.timer = function() {};
 
 			event.preventDefault();
 
@@ -64,8 +71,6 @@ Vue.directive('slide', {
 
 		selfEl.addEventListener('touchmove', function(event) {
 
-			self.height = _content.offsetHeight;
-
 			event.preventDefault();
 
 			if (event.changedTouches.length == 1) {
@@ -73,7 +78,11 @@ Vue.directive('slide', {
 				_endX = _touch.pageX;
 				_endY = _touch.pageY;
 
-				_content.style.transform = 'translate(0, ' + (self.pageY + _endY - _startY) + 'px)';
+				var _thisMove = self.pageY + _endY - _startY;
+				self.setP(_thisMove);
+				self.barTop = -(_thisMove / self.maxPageH * self.maxBarTop).toFixed(1);
+				self.setBarP();
+
 			}
 
 		}, false);
@@ -93,8 +102,8 @@ Vue.directive('slide', {
 					self.comeBack(self.pageY)
 				}
 
-				if (self.pageY < -(self.height - window.innerHeight)) {
-					self.comeBack(self.pageY + (self.height - window.innerHeight));
+				if (self.pageY < -self.maxPageH) {
+					self.comeBack(self.pageY + self.maxPageH);
 				}
 			}
 
@@ -104,12 +113,65 @@ Vue.directive('slide', {
 	unbind: function() {
 		console.log('unbind');
 	},
+	setBarP: function() {
+		if (this.barTop <= 0) {
+			this.barTop = 0;
+		}
+
+		if (this.barTop >= this.maxBarTop) {
+			this.barTop = this.maxBarTop;
+		}
+
+		this.bar.style.top = this.barTop + 'px';
+	},
+	setP: function(num) {
+		this.content.style.transform = 'translate(0, ' + num + 'px)';
+	},
+	timer: function() {},
 	comeBack: function(distance) {
 
 		var self = this,
 			_top = (distance > 0) ? true : false;
 
-		console.log(distance);
+		if (_top) {
+			self.timer = function() {
+
+				var _x = self.pageY / 60;
+
+				if (self.pageY == 0) {
+					return;
+				}
+
+				if (self.pageY <= 20) {
+					self.pageY = 0;
+				} else {
+					self.pageY -= _x;
+				}
+
+				self.setP(self.pageY);
+				setTimeout(self.timer, 5)
+			}
+
+		} else {
+
+			var _xx = distance / 20,
+				_ii = 0;
+			self.timer = function() {
+
+				if (_ii == 20) {
+					return;
+				}
+
+				self.pageY -= _xx;
+
+				self.setP(self.pageY);
+				_ii++;
+				setTimeout(self.timer, 5);
+
+			}
+		}
+
+		self.timer();
 
 	}
 })

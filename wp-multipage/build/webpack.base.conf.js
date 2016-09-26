@@ -16,7 +16,7 @@ var ENTRY = {
 
 var EXTERNALS = {
 	'localStore': 'store'
-};
+}
 
 
 module.exports = {

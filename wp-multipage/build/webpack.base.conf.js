@@ -16,6 +16,8 @@ var ENTRY = {
 
 var EXTERNALS = {
 	'localStore': 'store'
+	// 'Vue': 'Vue',
+	// 'VueRouter': 'VueRouter'
 }
 
 
@@ -28,7 +30,7 @@ module.exports = {
 	},
 	externals: EXTERNALS,
 	resolve: {
-		extensions: ['', '.js'],
+		extensions: ['', '.js', '.vue'],
 		fallback: [path.join(__dirname, '../node_modules')],
 		alias: {
 			'src': path.resolve(__dirname, '../src')
@@ -39,6 +41,12 @@ module.exports = {
 	},
 	module: {
 		loaders: [{
+			test: /\.vue$/,
+			loader: 'vue'
+		}, {
+			test: /\.html$/,
+			loader: 'vue-html'
+		}, {
 			test: /\.less$/,
 			loader: "style!css!less"
 		}, {
@@ -48,9 +56,7 @@ module.exports = {
 			test: /\.js$/,
 			exclude: /node_modules/,
 			loader: 'babel',
-			query: {
-				presets: ['es2015']
-			}
+			include: projectRoot
 		}]
 	}
 }

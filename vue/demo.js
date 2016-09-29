@@ -50,7 +50,6 @@ Vue.directive('slide', {
 
 		// 绑定事件
 		selfEl.addEventListener('touchstart', function(event) {
-			
 
 			self.maxBarTop = window.innerHeight - self.bar.offsetHeight;
 
@@ -121,6 +120,8 @@ Vue.directive('slide', {
 		if (this.barTop >= this.maxBarTop) {
 			this.barTop = this.maxBarTop;
 		}
+
+		console.log(this.barTop);
 
 		this.bar.style.top = this.barTop + 'px';
 	},

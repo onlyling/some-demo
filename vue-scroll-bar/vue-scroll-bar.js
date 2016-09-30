@@ -231,7 +231,7 @@ Vue.directive('scroll-bar', {
 
 			self.timer = function() {
 
-				var _x = -self.pageY / 40;
+				var _x = -Math.floor(self.pageY / 12);
 
 				if (self.pageY == 0) {
 					return;
@@ -244,16 +244,18 @@ Vue.directive('scroll-bar', {
 				}
 
 				self.setPage();
-				setTimeout(self.timer, 5);
+				setTimeout(self.timer, 16);
 			}
 
 		} else if (self.pageY > _max) {
 
-			var _xx = (self.pageY - _max) / 20,
+			var _xx = Math.floor((self.pageY - _max) / 15),
 				_ii = 0;
 			self.timer = function() {
 
-				if (_ii == 20) {
+				if (_ii == 15) {
+					self.pageY = _max;
+					self.setPage();
 					return;
 				}
 
@@ -261,7 +263,7 @@ Vue.directive('scroll-bar', {
 
 				self.setPage();
 				_ii++;
-				setTimeout(self.timer, 5);
+				setTimeout(self.timer, 16);
 
 			}
 
@@ -319,7 +321,7 @@ Vue.directive('scroll-bar', {
 
 			self.setPage();
 
-		}, 5);
+		}, 16);
 
 	}
 })

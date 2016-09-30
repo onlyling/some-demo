@@ -38,16 +38,23 @@ Vue.directive('slide', {
 
 			event.preventDefault();
 
+			// 重置一些静态数据，可能一些数据变化，造成一些差异
 			self.maxBarTop = self.windowH - self.bar.offsetHeight;
 			self.height = self.content.offsetHeight;
 			self.maxPageH = self.height - self.windowH;
 
+			// 更新缓存的_pageY
 			_pageY = self.pageY;
 
 			self.timer = function() {};
 
+			// 显示滑块
+			clearTimeout(self.hideBarTimer);
+			self.bar.className = 'm-slide-bar active';
+
 			if (event.targetTouches.length == 1) {
 				var _touch = event.targetTouches[0];
+				// 记录起点
 				_startY = _touch.pageY;
 
 			}
@@ -61,9 +68,20 @@ Vue.directive('slide', {
 			if (event.changedTouches.length == 1) {
 
 				var _touch = event.changedTouches[0],
-					_moveY = _touch.pageY - _startY;
+					_moveY = _touch.pageY - _startY; // 与起点的偏移量
 
 				self.pageY = _pageY - _moveY;
+
+				// 当self.pageY超过临界点，应该加一些阻力
+
+				if (self.pageY < 0) {
+					self.pageY = _pageY - _moveY - Math.floor(self.pageY / 4);
+				}
+
+				if (self.pageY > self.maxPageH) {
+					self.pageY = _pageY - _moveY - Math.floor((self.pageY - self.maxPageH) / 4);
+				}
+
 				self.setPage();
 
 			}
@@ -74,11 +92,16 @@ Vue.directive('slide', {
 
 			event.preventDefault();
 
+			self.hideBarTimer = setTimeout(function() {
+				// 隐藏滑块
+				self.bar.className = 'm-slide-bar';
+			}, 1500);
+
 			if (event.changedTouches.length == 1) {
 				var _touch = event.changedTouches[0],
 					_moveY = _touch.pageY - _startY;
 
-				self.pageY = _pageY - _moveY;
+				// self.pageY = _pageY - _moveY;
 				self.elastic();
 
 			}
@@ -95,7 +118,7 @@ Vue.directive('slide', {
 
 		self.content = selfEl.getElementsByClassName('m-slide-content')[0];
 
-		var _bar = self.content.getElementsByClassName('m-slide-bart');
+		var _bar = self.content.getElementsByClassName('m-slide-bar');
 
 		if (_bar.length) {
 			self.bar = _bar[0];
@@ -119,11 +142,11 @@ Vue.directive('slide', {
 		console.log('unbind');
 	},
 	pageY: 0, // 缓存内容的偏移值
-	barY: 0,
-	windowH: window.innerHeight,
-	maxBarTop: 0,
-	height: 0,
-	maxPageH: 0,
+	barY: 0, // 缓存滑块的偏移值
+	windowH: window.innerHeight, // 当前窗口的高度
+	maxBarTop: 0, // 滑块最大top 容器高度 - 滑块高度
+	height: 0, // 容器高度
+	maxPageH: 0, // 内容高度
 	setPage: function() {
 		this.content.style.transform = 'translate(0, ' + -this.pageY + 'px)';
 		this.barY = (this.pageY / this.maxPageH * this.maxBarTop).toFixed(1);
@@ -136,6 +159,7 @@ Vue.directive('slide', {
 			_t;
 
 		if (this.barY < 0) {
+
 			this.barY = 0;
 			_p = this.pageY / this.maxBarTop;
 			_y = 1 + _p;
@@ -148,13 +172,28 @@ Vue.directive('slide', {
 			this.bar.style.transform = 'scale(1, 1)';
 			this.bar.style.top = '0';
 		} else if (this.barY > this.maxBarTop) {
+
 			this.barY = this.maxBarTop;
+
+			var _n = this.pageY - this.maxPageH;
+
+			_p = _n / this.maxBarTop;
+			_y = 1 - _p;
+			_t = ((((_p) + 0.2) * this.bar.offsetHeight / 2) + this.maxBarTop).toFixed(2);
+
+			this.bar.style.transform = 'scale(1, ' + _y.toFixed(2) + ')';
+			this.bar.style.top = _t + 'px';
+
+		} else if (this.barY == this.maxBarTop) {
+			this.bar.style.transform = 'scale(1, 1);';
+			this.bar.style.top = this.maxBarTop + 'px';
 		} else {
 			this.bar.style.transform = 'scale(1, 1);';
 			this.bar.style.top = this.barY + 'px';
 		}
 
 	},
+	hideBarTimer: '',
 	timer: function() {},
 	elastic: function() {
 

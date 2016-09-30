@@ -14,16 +14,16 @@ var AppHome = Vue.extend({
 });
 
 var AppList = Vue.extend({
-	template: '<div class="m-slide" v-slide="pageY"><div class="m-slide-content"><div class="test-div" v-for="item in items">{{item}}</div></div></div>',
+	template: '<div class="m-scroll" v-scroll-bar="pageY"><div class="m-scroll-content"><div class="test-div" v-for="item in items">{{item}}</div></div></div>',
 	data: function() {
 		return {
-			items: ['1', '2', '3', '4', '5', '6', '7', '8'],
+			items: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'],
 			pageY: 100
 		}
 	}
 });
 
-Vue.directive('slide', {
+Vue.directive('scroll-bar', {
 	bind: function() {
 		console.log('bind');
 
@@ -31,7 +31,9 @@ Vue.directive('slide', {
 			selfEl = self.el;
 
 		var _startY = 0,
-			_pageY = 0;
+			_pageY = 0,
+			_startTime,
+			_move = 0;
 
 		// 绑定事件
 		selfEl.addEventListener('touchstart', function(event) {
@@ -50,13 +52,16 @@ Vue.directive('slide', {
 
 			// 显示滑块
 			clearTimeout(self.hideBarTimer);
-			self.bar.className = 'm-slide-bar active';
+			self.bar.className = 'm-scroll-bar active';
 
 			if (event.targetTouches.length == 1) {
 				var _touch = event.targetTouches[0];
 				// 记录起点
 				_startY = _touch.pageY;
-
+				// 记录开始时间
+				_startTime = (new Date()).getTime();
+				// 记录偏移量
+				_move = 0;
 			}
 
 		}, false);
@@ -69,6 +74,8 @@ Vue.directive('slide', {
 
 				var _touch = event.changedTouches[0],
 					_moveY = _touch.pageY - _startY; // 与起点的偏移量
+
+				_move = Math.abs(_moveY);
 
 				self.pageY = _pageY - _moveY;
 
@@ -92,17 +99,37 @@ Vue.directive('slide', {
 
 			event.preventDefault();
 
+			// 隐藏滑块
 			self.hideBarTimer = setTimeout(function() {
-				// 隐藏滑块
-				self.bar.className = 'm-slide-bar';
+				self.bar.className = 'm-scroll-bar';
 			}, 1500);
 
 			if (event.changedTouches.length == 1) {
-				var _touch = event.changedTouches[0],
-					_moveY = _touch.pageY - _startY;
 
-				// self.pageY = _pageY - _moveY;
+				var _touch = event.changedTouches[0],
+					_moveY = _touch.pageY - _startY; // 与起点的偏移量
+
 				self.elastic();
+				// 是否是快速滑动
+				var _time = (new Date()).getTime() - _startTime;
+
+				// 有位移的情况才算快速滑动
+				// pageY不能处于零界点
+				if (_move && _pageY > 0 && self.pageY < self.maxPageH) {
+
+					var _lv = '0';
+					if (_time <= 100 && _move <= 100) {
+						// 最快滑动
+						_lv = '1';
+					}
+
+					if (_time <= 200 && _move <= 200) {
+						// 快速滑动
+						_lv = '2';
+					}
+
+				}
+				self.sway(_lv, _moveY);
 
 			}
 
@@ -116,15 +143,15 @@ Vue.directive('slide', {
 
 		self.pageY = pageY;
 
-		self.content = selfEl.getElementsByClassName('m-slide-content')[0];
+		self.content = selfEl.getElementsByClassName('m-scroll-content')[0];
 
-		var _bar = self.content.getElementsByClassName('m-slide-bar');
+		var _bar = self.content.getElementsByClassName('m-scroll-bar');
 
 		if (_bar.length) {
 			self.bar = _bar[0];
 		} else {
 			self.bar = document.createElement('div');
-			self.bar.className = 'm-slide-bar';
+			self.bar.className = 'm-scroll-bar';
 
 			selfEl.appendChild(self.bar);
 		}
@@ -241,6 +268,58 @@ Vue.directive('slide', {
 		}
 
 		self.timer();
+
+	},
+	sway: function(level, moveY) {
+
+		var self = this,
+			_distance = 0;
+
+		switch (level) {
+			case '1':
+				_distance = self.maxPageH / 3;
+				break;
+			case '2':
+				_distance = self.maxPageH / 6;
+				break;
+		}
+
+		if (_distance <= 0) {
+			return;
+		}
+
+		_distance = Math.floor(_distance);
+
+		var _timer = setInterval(function() {
+
+			if (_distance <= 10) {
+				clearInterval(_timer);
+				return;
+			}
+
+			var _y = Math.floor(_distance / 10);
+			_distance -= _y;
+
+			if (moveY <= 0) {
+
+				self.pageY += _y;
+
+			} else {
+				self.pageY -= _y;
+			}
+
+			// 如果到了零界点
+			if (self.pageY < 0) {
+				self.pageY = 0;
+			}
+
+			if (self.pageY > self.maxPageH) {
+				self.pageY = self.maxPageH;
+			}
+
+			self.setPage();
+
+		}, 5);
 
 	}
 })

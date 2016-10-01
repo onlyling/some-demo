@@ -10,8 +10,29 @@ var AppVue = Vue.extend({
 });
 
 var AppHome = Vue.extend({
-	template: '<div class="home">home</div>'
+	template: '<div class="home"><br><p>home</p><br><br><br><input type="text" v-diy-input="inputVal"><br>{{inputVal}}</div>',
+	data: function() {
+		return {
+			inputVal: 0
+		}
+	}
 });
+
+Vue.directive('diy-input', {
+	twoWay: true,
+	bind: function() {
+		this.handler = function() {
+			// 将数据写回 vm
+			// 如果指令这样绑定 v-example="a.b.c"
+			// 它将用给定值设置 `vm.a.b.c`
+			this.set(this.el.value)
+		}.bind(this)
+		this.el.addEventListener('input', this.handler)
+	},
+	unbind: function() {
+		this.el.removeEventListener('input', this.handler)
+	}
+})
 
 var AppList = Vue.extend({
 	template: '<div class="m-scroll" v-scroll-bar="pageY"><div class="m-scroll-content"><div class="test-div" v-for="item in items">{{item}}</div></div></div>',
@@ -20,10 +41,16 @@ var AppList = Vue.extend({
 			items: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'],
 			pageY: 100
 		}
+	},
+	watch: {
+		'pageY': function(val) {
+			console.log(val)
+		}
 	}
 });
 
 Vue.directive('scroll-bar', {
+	twoWay: true,
 	bind: function() {
 		console.log('bind');
 
@@ -35,8 +62,7 @@ Vue.directive('scroll-bar', {
 			_startTime,
 			_move = 0;
 
-		// 绑定事件
-		selfEl.addEventListener('touchstart', function(event) {
+		self.startHandler = function(event) {
 
 			event.preventDefault();
 
@@ -64,9 +90,9 @@ Vue.directive('scroll-bar', {
 				_move = 0;
 			}
 
-		}, false);
+		}
 
-		selfEl.addEventListener('touchmove', function(event) {
+		self.moveHandler = function(event) {
 
 			event.preventDefault();
 
@@ -93,9 +119,9 @@ Vue.directive('scroll-bar', {
 
 			}
 
-		}, false);
+		}
 
-		selfEl.addEventListener('touchend', function(event) {
+		self.endHandler = function(event) {
 
 			event.preventDefault();
 
@@ -123,9 +149,14 @@ Vue.directive('scroll-bar', {
 						_lv = '1';
 					}
 
-					if (_time <= 200 && _move <= 200) {
+					if (_time <= 200 && _move <= 150) {
 						// 快速滑动
 						_lv = '2';
+					}
+
+					if (_time <= 200 && _move <= 200) {
+						// 快速滑动
+						_lv = '3';
 					}
 
 				}
@@ -133,7 +164,14 @@ Vue.directive('scroll-bar', {
 
 			}
 
-		}, false);
+		}
+
+		// 绑定事件
+		selfEl.addEventListener('touchstart', self.startHandler, false);
+
+		selfEl.addEventListener('touchmove', self.moveHandler, false);
+
+		selfEl.addEventListener('touchend', self.endHandler, false);
 
 	},
 	update: function(pageY) {
@@ -167,6 +205,14 @@ Vue.directive('scroll-bar', {
 	},
 	unbind: function() {
 		console.log('unbind');
+
+		var selfEl = this.el;
+
+		selfEl.removeEventListener('touchstart', self.startHandler);
+
+		selfEl.removeEventListener('touchmove', self.moveHandler);
+
+		selfEl.removeEventListener('touchend', self.endHandler);
 	},
 	pageY: 0, // 缓存内容的偏移值
 	barY: 0, // 缓存滑块的偏移值
@@ -177,6 +223,7 @@ Vue.directive('scroll-bar', {
 	setPage: function() {
 		this.content.style.transform = 'translate(0, ' + -this.pageY + 'px)';
 		this.barY = (this.pageY / this.maxPageH * this.maxBarTop).toFixed(1);
+		this.set(this.barY);
 		this.setBar();
 	},
 	setBar: function() {
@@ -282,7 +329,10 @@ Vue.directive('scroll-bar', {
 				_distance = self.maxPageH / 3;
 				break;
 			case '2':
-				_distance = self.maxPageH / 6;
+				_distance = self.maxPageH / 4;
+				break;
+			case '3':
+				_distance = self.maxPageH / 5;
 				break;
 		}
 

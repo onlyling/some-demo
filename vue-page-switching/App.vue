@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition :name="transitionName">
+    <transition :name="$router.app.pageTransition">
       <router-view></router-view>
     </transition>
   </div>
@@ -10,13 +10,18 @@
   export default {
     data () {
       return {
-        transitionName: 'slide-back'
+        // transitionName: 'slide'
       }
     }
   }
 </script>
 
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
   html,
   body,
   #app {
@@ -42,50 +47,65 @@
     background-color: #f30;
   }
   
-  .slide-enter-active {
-    transition: all .3s ease;
+  .bar2 {
+    background-color: #f60;
   }
-
-  .slide-enter{
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-    -webkit-transform: translate3d(100%, 0, 0);
+  
+  .slide-right-enter-active {
+    transition: all .2s ease;
   }
-
-  .slide-leave {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-  }
-
-  .slide-leave-active {
-    transition: all .3s ease;
-    opacity: .5;
-    transform: translate3d(-100%, 0, 0);
-    -webkit-transform: translate3d(-100%, 0, 0);
-  }
-
-
-  .slide-back-enter-active {
-    transition: all .3s ease;
-  }
-
-  .slide-back-enter{
-    opacity: .5;
-    transform: translate3d(-100%, 0, 0);
-    -webkit-transform: translate3d(-100%, 0, 0);
-  }
-
-  .slide-back-leave {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-  }
-
-  .slide-back-leave-active {
-    transition: all .3s ease;
+  
+  .slide-right-enter {
     opacity: 0;
     transform: translate3d(100%, 0, 0);
     -webkit-transform: translate3d(100%, 0, 0);
   }
   
+  .slide-right-leave {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
   
+  .slide-right-leave-active {
+    transition: all .3s ease;
+    opacity: .5;
+    transform: translate3d(-80%, 0, 0);
+    -webkit-transform: translate3d(-80%, 0, 0);
+  }
+  
+  .slide-left-enter-active {
+    transition: all .3s ease;
+  }
+  
+  .slide-left-enter {
+    opacity: .5;
+    transform: translate3d(-80%, 0, 0);
+    -webkit-transform: translate3d(-80%, 0, 0);
+  }
+  
+  .slide-left-leave {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  .slide-left-leave-active {
+    transition: all .2s ease;
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(100%, 0, 0);
+  }
+  
+  .slide-fade-enter-active {
+    transition: all .2s ease;
+  }
+  
+  .slide-fade-leave-active {
+    transition: all .2s ease;
+  }
+  
+  .slide-fade-enter,
+  .slide-fade-leave-active {
+    padding-left: 10px;
+    opacity: 0;
+  }
 </style>

@@ -1,4 +1,4 @@
-# vue-router 类似app的页面你切换
+# vue-router 类似app的页面切换
 
 > 额，为什么要这样切换呢？
 

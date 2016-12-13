@@ -21,6 +21,9 @@ const router = new VueRouter({
   routes // （缩写）相当于 routes: routes
 })
 
+// 记录路由改变的次数，避免页面刷新后，右进入
+var IS_ROUTER_FIRST_CHANGE = true
+
 router.beforeEach((to, from, next) => {
 
   let direction = 'slide-fade'
@@ -38,7 +41,14 @@ router.beforeEach((to, from, next) => {
     // 下个页面是否是返回？
     direction = !!to.meta.goback ? 'slide-right' : 'slide-fade'
   }
+
+  if (IS_ROUTER_FIRST_CHANGE) {
+    IS_ROUTER_FIRST_CHANGE = !IS_ROUTER_FIRST_CHANGE
+    direction = 'slide-fade'
+  }
+
   router.app.pageTransition = direction
+
   next()
 
 })
@@ -79,9 +89,3 @@ const app = new Vue({
   components: { App }
 }).$mount('#app')
 
-/* eslint-disable no-new */
-// new Vue({
-//   el: '#app',
-//   template: '<App/>',
-//   components: { App }
-// })

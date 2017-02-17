@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav" id="uiHeader"></header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content" id="bank"></div>
+</div>
+<!-- 查看更多 弹出层 -->
+<div class="popup popup-password bg-eee">
+    <div class="content-block">
+        <div class="fn-mb20" id="popupBox"></div>
+        <a class="button button-danger button-fill close-popup" href="javascript:void(0);">关闭</a>
+    </div>
+</div>
+<script type="text/html" id="t-bind">
+    <div class="content-block-title">提醒：充值和提现银行卡需同为一张银行卡。</div>
+    <div class="list-block">
+        <ul class="reg">
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">选择银行</div>
+                        <div class="item-input">
+                            <input type="text" id="singBankList">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">银行卡号</div>
+                        <div class="item-input">
+                            <input type="tel" id="bankCardNo" placeholder="输入您的银行卡号">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">预留手机号</div>
+                        <div class="item-input">
+                            <input type="tel" id="userPhoneNo" placeholder="输入您的预留手机号">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="get-code">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">验证码</div>
+                        <div class="item-input">
+                            <input type="text" id="mobileCode" placeholder="验证码">
+                            <input class="button button-fill" type="button" id="getCode" value="获取">
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="content-block">
+        <input class="button button-big button-fill button-danger" type="button" id="bind" value="立即绑定">
+    </div>
+</script>
+<script type="text/html" id="t-recharge">
+    <div class="content-block-title">提醒：充值和提现银行卡需同为一张银行卡。</div>
+    <div class="list-block">
+        <ul>
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">银行卡号</div>
+                        <div class="item-input">
+                            <input type="text" id="bankCode" placeholder="点击选择银行卡">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">充值金额</div>
+                        <div class="item-input">
+                            <input type="tel" id="rechargeAmount" placeholder="输入您将要充值的金额">
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="content-block">
+        <div class="row">
+            <div class="col-50">
+                <a href="/mobile/user.html" class="button button-big button-fill button-danger">取消</a>
+            </div>
+            <div class="col-50">
+                <input class="button button-big button-fill button-success" type="button" id="recharge" value="确认充值">
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageRecharge');
+</script>
+
+</body>
+</html>

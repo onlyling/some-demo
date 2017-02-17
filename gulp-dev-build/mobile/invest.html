@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav">
+        <a class="button button-link button-nav pull-left back" href="javascript:window.history.back();">
+            <span class="icon icon-left"></span>
+        </a>
+        <h1 class="title">项目详情</h1>
+    </header>
+    <!-- 工具栏 -->
+    <nav class="bar bar-tab invest-bar">
+        <a href="javascript:void(0);" class="button button-danger button-fill button-big" id="investBtn">立即投资</a>
+    </nav>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content" id="invest"></div>
+</div>
+<!-- 查看更多 弹出层 -->
+<div class="popup popup-invest bg-eee">
+    <div class="content-block">
+        <div id="popupBox"></div>
+        <a class="button button-danger button-fill close-popup fn-mt20" href="javascript:void(0);">关闭</a>
+    </div>
+</div>
+<!-- 我要投资 弹出层 -->
+<div class="popup popup-invests bg-eee">
+    <header class="bar bar-nav">
+        <a class="button button-link button-nav pull-right close-popup" href="javascript:void(0);">
+            <span class="icon icon-down"></span>
+        </a>
+        <h2 class="title">我要投资</h2>
+    </header>
+    <div class="content">
+        <div class="content-block" id="investsBox"></div>
+    </div>
+</div>
+<script type="text/html" id="t-invest">
+    <div class="invest">
+        <div class="fn-tac hd"><a href="javascript:void(0);">{{loanName}}</a></div>
+        <div class="fn-tac">
+            <p>预计年化利率</p>
+            <p class="fn-fs36 invest-rate">{{interestRate}}</p>
+        </div>
+        <div class="invest-plan">
+            <div class="sbar" style="width:{{investProgress}}%">
+                <div class="num{{if investProgress < 10}} left{{else if investProgress > 85}} right{{/if}}">融资{{investProgress}}%</div>
+            </div>
+        </div>
+        <ul class="ul fn-clear">
+            <li>
+                <p>项目期限</p>
+                <p class="str fn-fs20">{{timeLimit}}</p>
+            </li>
+            <li>
+                <p>融资金额</p>
+                <p class="str fn-fs20">{{loanAmount.replace(/\,/g,'')/10000}}万元</p>
+            </li>
+            <li>
+                <p>剩余金额</p>
+                <p class="str fn-fs20">{{avalableAmount.replace(/\,/g,'')/10000}}万元</p>
+            </li>
+        </ul>
+    </div>
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">起投金额</div>
+                    <div class="item-after">{{leastInvestAmount}}元</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">已投人数</div>
+                    <div class="item-after">{{investCount}}人</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">还款方式</div>
+                    <div class="item-after">{{repayDivisionWay}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">起投时间</div>
+                    <div class="item-after">{{investAvlDate}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">截止时间</div>
+                    <div class="item-after">{{deadline}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">起息时间</div>
+                    <div class="item-after">{{tradeEffectiveDate}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">还款时间</div>
+                    <div class="item-after">{{tradeExpireDate?tradeExpireDate:'暂无'}}</div>
+                </div>
+            </li>
+            <li class="item-content{{if loanPurpose.length > 9}} item-link loanPurpose{{/if}}">
+                <div class="item-inner">
+                    <div class="item-title">借款用途</div>
+                    <div class="item-after">{{loanPurpose.substr(0,10)}}</div>
+                </div>
+            </li>
+            <li class="item-content item-link loanerInfo">
+                <div class="item-inner">
+                    <div class="item-title">借款详情</div>
+                    <div class="item-after">点击查看</div>
+                </div>
+            </li>
+            <li class="item-content item-link promiseInfo">
+                <div class="item-inner">
+                    <div class="item-title">承诺信息</div>
+                    <div class="item-after">点击查看</div>
+                </div>
+            </li>
+            <li class="item-content item-link investDetail">
+                <div class="item-inner">
+                    <div class="item-title">投资明细</div>
+                    <div class="item-after">点击查看</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="t-loanerInfo">
+    <div class="content-block-title">借款人信息</div>
+    <div class="list-block">
+        <ul>
+            {{if userType=='GR'}}
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">用户名</div>
+                        <div class="item-after">{{list.showLoanerUserName}}</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">姓名</div>
+                        <div class="item-after">{{list.loanerUserName}}</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">性别</div>
+                        <div class="item-after">{{list.gender}}</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">学历</div>
+                        <div class="item-after">{{list.education}}</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">是否结婚</div>
+                        <div class="item-after">{{list.married}}</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">户籍城市</div>
+                        <div class="item-after">{{list.householdRegister}}</div>
+                    </div>
+                </li>
+            {{else}}
+                {{=getJG(dec,list)}}
+            {{/if}}
+        </ul>
+    </div>
+    {{if userType=='GR'}}
+    <div class="content-block-title">借款人资产信息</div>
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">年收入水平</div>
+                    <div class="item-after">{{list.salaryLevel}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">其他贷款</div>
+                    <div class="item-after">{{list.otherLoans}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">其他资产情况</div>
+                    <div class="item-after">{{list.otherAssets}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    {{/if}}
+</script>
+<script type="text/html" id="t-promiseInfo">
+    <div class="card demo-card-header-pic">
+        <div valign="bottom" class="card-header color-white no-border no-padding">
+            <img class="card-cover" src="{{list.guaranteeLicenseUrl?list.guaranteeLicenseUrl:'/mobile/img/nopic.jpg'}}">
+        </div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                <p class="color-gray">承诺函</p>
+                <p>承诺机构:</p>
+                <p>{{list.guaranteeName}}</p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="t-investDetail">
+    <div class="content-block-title">投资明细</div>
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">投资人</div>
+                    <div class="item-after">金额(时间)</div>
+                </div>
+            </li>
+            {{if !list.length}}
+                <li class="item-content">
+                    <div class="item-inner">
+                        暂无人投资~
+                    </div>
+                </li>
+            {{/if}}
+            {{each list as item i}}
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">{{item.userName}}</div>
+                        <div class="item-after">{{item.amount}}({{item.createDate.split(' ')[0]}})</div>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="t-JG">
+{{each list as item i}}
+<li class="item-content">
+    <div class="item-inner">
+        <div class="item-title">{{item.title}}</div>
+        <div class="item-after">{{item.infos}}</div>
+    </div>
+</li>
+{{/each}}
+</script>
+<script type="text/html" id="t-investsBox">
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">可用金额</div>
+                    <div class="item-after"><span class="fn-f60 fn-mr5">{{availableBalance}}</span>元</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">可投金额</div>
+                    <div class="item-after"><span class="fn-f60 fn-mr5">{{avalableAmount}}</span>元</div>
+                </div>
+            </li>
+            <li class="item-content invest-jsq">
+                <span class="btn sub" id="btnSub">-</span>
+                <input class="text" id="inputMoney" type="number" value="{{leastInvestAmount}}">
+                <span class="btn add" id="btnAdd">+</span>
+            </li>
+        </ul>
+        <p>起投金额: {{leastInvestAmount}} 元，递增金额：{{increaseAmount}} 元</p>
+        <ul class="hasPrivilege fn-hide">
+            <li class="useGiftMoney fn-hide">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">使用红包</div>
+                        <div class="item-input">
+                            <input type="text" id="giftMoney" placeholder="可使用元红包">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="useExperienceAmount fn-hide">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">使用体验金</div>
+                        <div class="item-input">
+                            <input type="text" id="experienceAmount" placeholder="可使用元体验金">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="useGainMoney fn-hide">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">加息券</div>
+                        <div class="item-input">
+                            <input type="text" id="gainMoneyTradeIds" placeholder="最高可使用4%">
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="content-block">
+        <a href="javascript:void(0);" class="button button-danger button-fill button-big" id="investsBtn">立即投资</a>
+    </div>
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageInvest');
+</script>
+
+</body>
+</html>

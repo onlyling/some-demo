@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav">
+        <a class="button button-link button-nav pull-left back" href="javascript:window.history.back();">
+            <span class="icon icon-left"></span>
+        </a>
+        <a class="button pull-right external" href="/mobile/register.html">注册</a>
+        <h1 class="title">用户登录</h1>
+    </header>
+    <!-- 工具栏 -->
+    <nav class="bar bar-tab" id="uiFooter"></nav>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <div class="login-avatar"></div>
+        <div class="login">
+            <input class="text" id="userName" type="text" name="userName" placeholder="用户名" autocomplete="off">
+            <input class="text" id="pwd" type="password" name="userName" placeholder="登录密码" autocomplete="off">
+            <p class="formTip"></p>
+            <p class="fn-mt20"><input class="button button-danger button-big button-fill" id="submit" type="button" value="立即登录"></p>
+            <p class="fn-tac fn-mt20"><a href="/mobile/forget.html">忘记密码？</a></p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageLogin');
+</script>
+
+</body>
+</html>

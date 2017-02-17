@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav" id="uiHeader"></header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content" id="popularize">
+        <div class="card demo-card-header-pic">
+            <div valign="bottom" class="card-header color-white no-border no-padding">
+                <div id="qrcode" class="popularize-ewm"></div>
+            </div>
+            <div class="card-content">
+                <div class="card-content-inner fn-tac">
+                <p>我的二维码编号是：<span id="popularizeID"></span></p>
+                    <p>扫一下可以快速注册哦~</p>
+                    <p>我的推广链接是：</p>
+                    <p class="fn-f30" id="popularizeUrl"></p>
+                    <p><a class="button button-fill button-danger" id="popularizeCopy" data-clipboard-target="#popularizeUrl" href="javascript: void(0);">点击复制</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/qrcode.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/clipboard.min.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pagePopularize');
+</script>
+
+</body>
+</html>

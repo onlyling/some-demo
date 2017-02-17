@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav" id="uiHeader"></header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content" id="user">
+        <div class="content-block">
+            <p class="buttons-row" id="nav">
+                <a href="/mobile/transfereds.html?status=can" alias="can" class="button button-round">可转让</a>
+                <a href="/mobile/transfereds.html?status=ing" alias="ing" class="button button-round">转让中</a>
+                <a href="/mobile/transfereds.html?status=end" alias="end" class="button button-round">已转让</a>
+                <a href="/mobile/transfereds.html?status=false" alias="false" class="button button-round">转让失败</a>
+                <a href="/mobile/transfereds.html?status=buy" alias="buy" class="button button-round">已购买</a>
+            </p>
+            <div class="list-block media-list">
+                <ul id="list"></ul>
+            </div>
+        </div>
+        <div class="content-block">
+            <a href="javascript:void(0);" class="button button-danger button-fill" id="moreBtn">加载更多</a>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="t-can">
+    {{if !list.length}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-text fn-tac">暂无相关内容</div>
+            </div>
+        </li>
+    {{/if}}
+    {{each list as item i}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title-row">
+                    <div class="item-title">{{item.loanName}}</div>
+                    <div class="item-after"><span class="fn-f30">&yen;{{item.investAmount}}</span></div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">投资时间</div>
+                    <div class="item-after">{{item.investDate}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">到期时间</div>
+                    <div class="item-after">{{item.finishDate}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">剩余/总期限</div>
+                    <div class="item-after">{{item.leftTime}}/{{item.allTime}}天</div>
+                </div>
+                <div class="item-text"><a class="button button-fill button-warning" href="/mobile/totransfered.html?tradeId={{item.tradeId}}&tradeDetailId={{item.tradeDetailId}}">申请转让</a></div>
+            </div>
+        </li>
+    {{/each}}
+</script>
+<script type="text/html" id="t-ing">
+    {{if !list.length}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-text fn-tac">暂无相关内容</div>
+            </div>
+        </li>
+    {{/if}}
+    {{each list as item i}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title-row">
+                    <div class="item-title">{{item.tradeName}}</div>
+                    <div class="item-after"><span class="fn-f30">&yen;{{item.originalAmount}}</span></div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">转让价/手续费</div>
+                    <div class="item-after">{{item.amount}}/{{item.chargeAmount}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">始/止时间</div>
+                    <div class="item-after">{{item.releaseDate.split(' ')[0]}}/{{item.transferExpireDate.split(' ')[0]}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">预期年化利率</div>
+                    <div class="item-after">{{item.realProfitRate}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">剩余/总期限</div>
+                    <div class="item-after">{{item.leftTime}}/{{item.allTime}}天</div>
+                </div>
+                <div class="item-text"><a class="button button-fill button-warning repeal" href="javascript:void(0);" tradeId={{item.tradeId}} tradeTransferId={{item.tradeTransferId}}>撤销转让</a></div>
+            </div>
+        </li>
+    {{/each}}
+</script>
+<script type="text/html" id="t-end">
+    {{if !list.length}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-text fn-tac">暂无相关内容</div>
+            </div>
+        </li>
+    {{/if}}
+    {{each list as item i}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title-row">
+                    <div class="item-title">{{item.loanName}}</div>
+                    <div class="item-after"><span class="fn-f30">&yen;{{item.originalAmount}}</span></div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">转让价/手续费</div>
+                    <div class="item-after">{{item.amount}}/{{item.chargeAmount}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">转让时间</div>
+                    <div class="item-after">{{item.transferDate.split(' ')[0]}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">预期年化利率</div>
+                    <div class="item-after">{{item.realProfitRate}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">剩余/总期限</div>
+                    <div class="item-after">{{item.leftTime}}/{{item.allTime}}天</div>
+                </div>
+            </div>
+        </li>
+    {{/each}}
+</script>
+<script type="text/html" id="t-false">
+    {{if !list.length}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-text fn-tac">暂无相关内容</div>
+            </div>
+        </li>
+    {{/if}}
+    {{each list as item i}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title-row">
+                    <div class="item-title">原始金额</div>
+                    <div class="item-after"><span class="fn-f30">&yen;{{item.originalAmount}}</span></div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">转让价/手续费</div>
+                    <div class="item-after">{{item.amount}}/{{item.chargeAmount}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">截止时间</div>
+                    <div class="item-after">{{item.transferExpireDate.split(' ')[0]}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">预期年化利率</div>
+                    <div class="item-after">{{item.realProfitRate}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">剩余/总期限</div>
+                    <div class="item-after">{{item.leftTime}}/{{item.allTime}}天</div>
+                </div>
+                <div class="item-text"><a class="button button-fill button-warning" href="/mobile/totransfered.html?tradeId={{item.tradeId}}&tradeDetailId={{item.tradeDetailId}}">重新转让</a></div>
+            </div>
+        </li>
+    {{/each}}
+</script>
+<script type="text/html" id="t-buy">
+    {{if !list.length}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-text fn-tac">暂无相关内容</div>
+            </div>
+        </li>
+    {{/if}}
+    {{each list as item i}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title-row">
+                    <div class="item-title">{{item.loanName}}</div>
+                    <div class="item-after">&yen;{{item.originalAmount}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">转让价/手续费</div>
+                    <div class="item-after">{{item.amount}}/{{item.chargeAmount}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">始/止时间</div>
+                    <div class="item-after">{{item.transferDate.split(' ')[0]}}/{{item.transferExpireDate.split(' ')[0]}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">预期年化利率</div>
+                    <div class="item-after">{{item.realProfitRate}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">剩余/总期限</div>
+                    <div class="item-after">{{item.leftTime}}/{{item.allTime}}天</div>
+                </div>
+            </div>
+        </li>
+    {{/each}}
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageTransfereds');
+</script>
+
+</body>
+</html>

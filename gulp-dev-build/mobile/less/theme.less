@@ -1,0 +1,119 @@
+body{ font-size: 14px;}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; outline: 0; vertical-align: baseline; background: transparent }
+ul { list-style: none; }
+.bg-fff { background-color: #fff; }
+.bg-eee{ background-color: @color-bg; }
+.ui-bar-nav { background-color: #0075c2; color: #fff;
+	&:after { background-color: #0075c2; }
+	.title { color: #fff; font-size: 16px; }
+	.button { color: #fff; border-color: #fff; }
+	a{ color: #fff;}
+}
+.ui-plan { display: inline-block; width: 6.5rem; border: 1px solid #ccc; height: 12px; border-radius: 6px; padding: 1px; overflow: hidden; background-color: #eaeaea; vertical-align: middle;
+	.ui-bar { display: inline-block; border-radius: 4px; height: 100%; width: 0; background-color: #f83e27; background-size: 30px 30px; animation: baring 1s linear infinite; }
+	.ui-bar { background-image: -webkit-linear-gradient(bottom left, rgba(179, 76, 76, 0.15) 25%, rgba(49, 42, 42, 0) 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, rgba(111, 101, 101, 0)); }
+	.ui-bar { transition: width 1.2s cubic-bezier(.41, .25, .01, .99); vertical-align: top; }
+}
+@keyframes baring {
+	from { background-position: 0 0; }
+	to { background-position: 30px 0; }
+}
+/*upfile*/
+.upfile{ position: relative;
+	.file{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0;}
+	img{ max-width: 100%;}
+}
+/*user icon*/
+i.icon.icon-coupon { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_coupon.png); }
+i.icon.icon-collection { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_collection.png); }
+i.icon.icon-client { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_client.png); }
+i.icon.icon-deal { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_deal.png); }
+i.icon.icon-transfer { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_transfer.png); }
+i.icon.icon-set { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_set.png); }
+i.icon.icon-invest { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_invest.png); }
+i.icon.icon-ewm { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_ewm.png); }
+i.icon.icon-earnings { width: 1.45rem; height: 1.45rem; background-image: url(../img/i_earnings.png); }
+/*slide*/
+.slide { position: relative; max-width: 100%; overflow: hidden; }
+.slide:after { content: ''; display: block; width: 100%; padding-top: 50%; }
+.slide ul { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.slide li { list-style: none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.slide li:first-child { z-index: 1; }
+.slide li img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; border: none; }
+.slide .dot { position: absolute; right: 10px; bottom: 10px; z-index: 5; font-size: 0; }
+.slide .dot span { display: inline-block; width: 5px; height: 5px; margin-left: 5px; border: 1px solid #fff; border-radius: 50%; }
+.slide .dot .cur { background-color: #fff; }
+
+/*index-push*/
+.index-push { position: relative; margin-top: 1rem; padding: 0 .75rem; .hairline(top, #cecece);
+	strong { font-size: 1.2em; color: #ec860a; }
+	.hr { background-color: #cecece; height: 2px; border: 0; margin: 1rem 0; }
+}
+/*login*/
+.login-avatar{ width: 5rem; height: 5rem; margin: 1rem auto; background: #fff url(../img/avatar.jpg) 50% 50% no-repalce; background-size: 100%; border-radius: 2.5rem;}
+.login{ width: 12rem; margin: 0 auto;
+	.text{width: 100%; height: 2rem; padding: .5rem .1rem; background-color: transparent; border: 0; border-bottom: 1px solid #cecece;}
+}
+/*reg*/
+.reg .get-code .item-input{ position: relative;}
+.reg .get-code .button{ position: absolute; width: 3rem; right: 0; top: 50%; transform: translate(0,-50%);}
+/*投资列表*/
+.invests{
+	.item{ position: relative; margin: 1rem 0; background-color: #fff; padding: .75rem; .hairline(top,@border-default-color); .hairline(bottom,@border-default-color);}
+	.mark { position: absolute; z-index: 99; right: .75rem; top: -.2rem; width: 1.25rem; height: 1.75rem; text-align: center; background-color: #f84826; color: #fff; border-top: .2rem solid #ef3713; line-height: 16px; font-size: 12px; }
+	.hd { position: relative; height: 2rem; line-height: 2rem; overflow: hidden; font-size: 20px; .hairline(bottom, #cecece); .fn-text-overflow; }
+	.ul { padding: 1rem 0; line-height: 20px;
+		li { display: block; position: relative; width: 33%; text-align: center; float: left; .hairline(left, #cecece);
+			&:first-child { .hairline-remove(left); }
+		}
+	}
+	.str { color: #ec860a; }
+}
+/*投资详情*/
+.invest{ position: relative; background-color: #fff; .hairline(bottom,@border-default-color); box-shadow: 0 .1rem .2rem rgba(0, 0, 0, 0.2);
+	.hd{ font-size: 16px; color: #333; line-height: 20px; padding: .5rem .75rem;}
+	.invest-rate{ color: #f30;}
+	.ul { padding: 1rem 0; line-height: 20px; color: #666;
+		li { display: block; position: relative; width: 33%; text-align: center; float: left; .hairline(left, @border-default-color);
+			&:first-child { .hairline-remove(left); }
+		}
+		.str{ color: #333;}
+	}
+}
+/*投资详情页 进度*/
+.invest-plan{ width: 100%; height: 4px; margin-top: 1.5rem; background-color: @border-default-color;
+	.sbar{ position: relative; height: 4px; background-color: #fd4200;}
+	.num{ position: absolute; bottom: 10px; right: 0; margin-right: -2rem; color: #fff; font-size: 12px; width: 3.5rem; height: 1rem; line-height: 1rem; background-color: #fd6700; border-radius: 4px; text-align: center;
+		&.left{ left: 0; margin-right: 0; right: auto;}
+		&.right{ margin-right: 0;}
+	}
+}
+/*投资详情页 下方投资按钮 已用于多处*/
+.invest-bar .button { top: .1rem; border-radius: 0;}
+/*投资详情页 我要投资输入*/
+.invest-jsq{ padding-left: 0 !important;
+	.btn{ width: 2.2rem; height: 2.2rem; line-height: 2.2rem; text-align: center; border: 1px solid #0894ec; color: #fff; background-color: #0894ec;
+		&:active{ background-color: #0489dc;}
+	}
+}
+/*用户中心 头部*/
+.user-hd{ background-color: #0E89DA; color: #fff; padding: 1.5rem 0 1.5rem 6rem; height: 5rem;
+	.icon{ position: absolute; margin-left: -2.5rem; width: 2rem; height: 2rem; font-size: 2rem;
+		&:before{ position: absolute; left: 0; top: 0; width: 2rem; height: 2rem; line-height: 2rem;}
+	}
+}
+/*用户中心 充值提现按钮*/
+.user-moneys{ padding: 1rem 0;
+	.button{ display: inline-block; margin: 0 5%; width: 39%; background-color: #fff;}
+}
+/*用户中心 金额*/
+.user-money{ border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; text-align: center; background-color: #fff;
+	&.nobb{ border-bottom: 0;}
+	li{ border-right: 1px solid #e8e8e8; width: 33%; float: left; padding: .5rem 0;
+		&:last-child{ border-right: 0;}
+	}
+	p{ color: #8d8d8d;}
+	.blue{ color: #126cf2; font-size: 16px;}
+}
+/*推广二维码*/
+.popularize-ewm{ width: 200px; height: 200px; margin: .5rem auto; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2)}

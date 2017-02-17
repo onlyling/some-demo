@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav">
+        <a class="icon icon-left pull-left" href="/mobile/customerManager.html"></a>
+        <a class="icon icon-me pull-right" href="/mobile/user.html"></a>
+        <h1 class="title">客户详情</h1>
+    </header>
+    <!-- 工具栏 -->
+    <nav class="bar bar-tab invest-bar" id="saveBtn">
+        <a href="javascript:void(0);" class="button button-danger button-fill button-big">保存</a>
+    </nav>
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <div class="list-block">
+            <ul id="list">
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">设置额度(%)</div>
+                            <div class="item-input">
+                                <input type="number" id="limit" placeholder="请输入额度数字" min="0" max="100">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">客户备注</div>
+                            <div class="item-input">
+                                <input type="text" id="note" placeholder="请输入客户备注">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content-block-title">客户基本信息</div>
+        <div class="list-block">
+            <ul id="userInfo"></ul>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="t-userInfo">
+    <li class="item-content">
+        <div class="item-inner">
+            <div class="item-title">用户名</div>
+            <div class="item-after">{{customerBaseInfo.userName}}</div>
+        </div>
+    </li>
+    <li class="item-content">
+        <div class="item-inner">
+            <div class="item-title">真实姓名</div>
+            <div class="item-after">{{=hasVal(customerBaseInfo.realName,'未实名认证')}}</div>
+        </div>
+    </li>
+    <li class="item-content">
+        <div class="item-inner">
+            <div class="item-title">手机号码</div>
+            <div class="item-after">{{=hasVal(customerBaseInfo.mobile,'未绑定手机号码')}}</div>
+        </div>
+    </li>
+    <li class="item-content">
+        <div class="item-inner">
+            <div class="item-title">电子邮箱</div>
+            <div class="item-after">{{=hasVal(customerBaseInfo.mail,'未绑定电子邮箱')}}</div>
+        </div>
+    </li>
+    <li class="item-content">
+        <div class="item-inner">
+            <div class="item-title">账户状态</div>
+            <div class="item-after">{{customerBaseInfo.statues}}</div>
+        </div>
+    </li>
+    <li class="item-content">
+        <div class="item-inner">
+            <div class="item-title">身份证号码</div>
+            <div class="item-after">{{=getCertNo(customerBaseInfo.certNo)}}</div>
+        </div>
+    </li>
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageCustomerBaseInfo');
+</script>
+
+</body>
+</html>

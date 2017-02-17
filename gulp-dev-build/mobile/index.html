@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page bg-fff">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav" id="uiHeader"></header>
+    <!-- 工具栏 -->
+    <nav class="bar bar-tab" id="uiFooter"></nav>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <!-- slide star -->
+        <div class="slide" id="slide"></div>
+        <!-- star end -->
+        <!-- index push start -->
+        <div class="index-push invests" id="push"></div>
+        <!-- index push end -->
+    </div>
+</div>
+<script type="text/html" id="t-slide">
+    <ul>
+    {{each imgInfo as item i}}
+        <li>
+            <a href="{{(item.linkUrl)?item.linkUrl:'javascript:void(0);'}}">
+                <img src="{{item.imgUrl}}" alt="{{item.name}}">
+            </a>
+        </li>
+    {{/each}}
+    </ul>
+    <div class="dot">
+    {{each imgInfo as item i}}
+        <span></span>
+    {{/each}}
+    </div>
+</script>
+<script type="text/html" id="t-push">
+    <div class="item">
+        <div class="mark">{{(newerLoanDemand === 'Y')?'体验标':'荐'}}</div>
+        <h2 class="hd">{{loanName}}</h2>
+        <ul class="ul">
+            <li>
+                <p>融资金额</p>
+                <p>{{loanAmount.replace(/\,/g,'')/10000}}万</p>
+            </li>
+            <li>
+                <p>年化收益率</p>
+                <p><strong>{{interestRate}}</strong></p>
+            </li>
+            <li>
+                <p>借款期限</p>
+                <p>{{timeLimit}}</p>
+            </li>
+        </ul>
+        <p>起投时间：{{investAvlDate}}</p>
+        <p>投资进度：<span class="ui-plan fn-mr10"><span class="ui-bar" id="bar"></span></span>{{investProgress}}%</p>
+        <hr class="hr" >
+        <p id="timer"></p>
+        <p class="fn-mt20"><a class="button button-fill button-big {{(status == '1')?'button-danger':'button-warning'}}" href="/mobile/invest.html?demandId={{demandId}}&tradeId={{tradeId}}">{{if status === '1'}}查看详情{{else if status === '3'}}未到投资时间{{else}}已完成{{/if}}</a></p>
+    </div>
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/swipeSlide.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageIndex');
+</script>
+
+</body>
+</html>

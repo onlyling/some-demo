@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav">
+        <a class="icon icon-left pull-left" href="/mobile/set.html"></a>
+        <a class="icon icon-me pull-right" href="/mobile/user.html"></a>
+        <h1 class="title">实名信息</h1>
+    </header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content" id="realName"></div>
+</div>
+<script type="text/html" id="t-input">
+    {{if status=='zj'}}
+        <div class="content-block-title">证件实名</div>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">真实姓名</div>
+                            <div class="item-input">
+                                <input type="text" id="userName" placeholder="请输入真实姓名" {{if certifyLevel == '1'}}value="{{realName}}" readonly="readonly"{{/if}}>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">证件号码</div>
+                            <div class="item-input">
+                                <input type="text" id="certNo" placeholder="请输入证件号码" {{if certifyLevel == '1'}}value="{{certNo}}" readonly="readonly"{{/if}}>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">证件到期时间</div>
+                            <div class="item-input">
+                                <input type="text" id="businessPeriod">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">身份证正面照</div>
+                            <div class="item-input upfile">
+                                <img options="size=256x128&text=身份证正面照&bgcolor=#999&color=#fff" class="placeholder img">
+                                <input class="input" type="hidden" id="certFrontPath">
+                                <input class="file" type="file">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">身份证反面照</div>
+                            <div class="item-input upfile">
+                                <img options="size=256x128&text=身份证反面照&bgcolor=#999&color=#fff" class="placeholder img">
+                                <input class="input" type="hidden" id="certBackPath">
+                                <input class="file" type="file">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content-block">
+            <p class="formTip fn-mb20">提示：证件实名针对充值、投资、提现无限制，需上传证件正反面图片。</p>
+            <input class="button button-big button-fill button-danger zj" type="button" id="submit" value="立即认证">
+            <a class="button button-fill button-warning fn-mt10" href="/mobile/realName.html?status=sc">手持实名</a>
+        </div>
+    {{else if status=='sc'}}
+        <div class="content-block-title">手持实名</div>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">真实姓名</div>
+                            <div class="item-input">
+                                <input type="text" id="userName" placeholder="请输入真实姓名" {{if certifyLevel == '1'}}value="{{realName}}" readonly="readonly"{{/if}}>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">证件号码</div>
+                            <div class="item-input">
+                                <input type="text" id="certNo" placeholder="请输入证件号码" {{if certifyLevel == '1'}}value="{{certNo}}" readonly="readonly"{{/if}}>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">证件到期时间</div>
+                            <div class="item-input">
+                                <input type="text" id="businessPeriod">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">手持证件照</div>
+                            <div class="item-input upfile">
+                                <img options="size=256x128&text=手持证件照&bgcolor=#999&color=#fff" class="placeholder img">
+                                 <input class="input" type="hidden" id="certFrontPath">
+                                <input class="file" type="file">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">身份证反面照</div>
+                            <div class="item-input upfile">
+                                <img options="size=256x128&text=身份证反面照&bgcolor=#999&color=#fff" class="placeholder img">
+                                <input class="input" type="hidden" id="certBackPath">
+                                <input class="file" type="file">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content-block">
+            <p class="formTip fn-mb20">提示：手持实名可在证件照与公安部留存照片不符时使用，充值、投资、提现无限制。</p>
+            <input class="button button-big button-fill button-danger sc" type="button" id="submit" value="立即认证">
+        </div>
+    {{else}}
+        <div class="content-block-title">证件实名</div>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">真实姓名</div>
+                            <div class="item-input">
+                                <input type="text" id="userName" placeholder="请输入真实姓名">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">证件号码</div>
+                            <div class="item-input">
+                                <input type="text" id="certNo" placeholder="请输入证件号码">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content-block">
+            <p class="formTip fn-mb20">提示：快捷实名目前只支持充值或投资额度为1万元以下使用，且暂不支持帐户提现！</p>
+            <input class="button button-big button-fill button-danger kj" type="button" id="submit" value="立即实名">
+            <a class="button button-fill fn-mt10" href="/mobile/realName.html?status=zj">证件实名</a>
+            <a class="button button-fill button-warning fn-mt10" href="/mobile/realName.html?status=sc">手持实名</a>
+        </div>
+    {{/if}}
+</script>
+<script type="text/html" id="t-read">
+    <div class="content-block-title">实名信息</div>
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">真实姓名</div>
+                    <div class="item-after">{{realName}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">证件类型</div>
+                    <div class="item-after">{{certType}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">证件号码</div>
+                    <div class="item-after">{{certNo}}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">认证等级</div>
+                    <div class="item-after">
+                        {{if certifyLevel == '0'}}
+                            未认证
+                        {{else if certifyLevel == '1'}}
+                            快捷实名
+                        {{else if certifyLevel == '2'}}
+                            证件过期
+                        {{else if certifyLevel == '3'}}
+                            证件实名
+                        {{else}}
+                            手持实名
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">认证状态</div>
+                    <div class="item-after">
+                        {{if realNameAuthentication == 'IS'}}
+                            已认证
+                        {{else if realNameAuthentication == 'IN'}}
+                            认证中
+                        {{else if realNameAuthentication == 'NO'}}
+                            未通过
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    {{if realNameAuthentication =='NO' || certifyLevel == '2'}}
+        <div class="content-block">
+            <a class="button button-fill fn-mt10" href="/mobile/realName.html?status=zj">证件实名</a>
+            <a class="button button-fill button-warning fn-mt10" href="/mobile/realName.html?status=sc">手持实名</a>
+        </div>
+    {{/if}}
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/placeholder.min.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageRealName');
+</script>
+
+</body>
+</html>

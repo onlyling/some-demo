@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav ui-bar-nav">
+        <a class="button button-link button-nav pull-left back" href="javascript:window.history.back();">
+            <span class="icon icon-left"></span>
+        </a>
+        <a class="button pull-right external" href="/mobile/login.html">登录</a>
+        <h1 class="title">用户注册</h1>
+    </header>
+    <!-- 工具栏 -->
+    <nav class="bar bar-tab" id="uiFooter"></nav>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <form class="reg" id="reg">
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">用户名</div>
+                                <div class="item-input">
+                                    <input type="text" id="userName" placeholder="输入您的用户名">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">登录密码</div>
+                                <div class="item-input">
+                                    <input type="password" id="password" placeholder="请设置您的登录密码">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">手机号码</div>
+                                <div class="item-input">
+                                    <input type="tel" id="mobile" placeholder="请输入常用手机号码" maxlength="11">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="get-code">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">验证码</div>
+                                <div class="item-input">
+                                    <input type="text" id="code" placeholder="验证码">
+                                    <input class="button button-fill" type="button" id="getCode" value="获取">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="get-code">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">微信号</div>
+                                <div class="item-input">
+                                    <input type="text" id="wechat" placeholder="选填">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="get-code">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">QQ号</div>
+                                <div class="item-input">
+                                    <input type="number" id="QQ" placeholder="选填">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">推荐人号码</div>
+                                <div class="item-input">
+                                    <input type="text" id="referees" placeholder="选填">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <input class="button button-big button-fill button-danger" type="button" id="submit" value="注册">
+                <p class="formTip"></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageRegister');
+</script>
+
+</body>
+</html>

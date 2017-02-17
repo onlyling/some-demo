@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav" id="uiHeader"></header>
+    <!-- 工具栏 -->
+    <nav class="bar bar-tab" id="uiFooter"></nav>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <div class="content-block fn-hide" id="isTransfer">
+            <p class="buttons-row"><a href="/mobile/invests.html" class="button button-round">投资标</a><a href="/mobile/transfers.html" class="button button-round active">转让标</a></p>
+        </div>
+        <ul class="invests" id="invests"></ul>
+        <div class="content-block">
+            <a href="javascript:void(0);" class="button button-danger button-fill fn-hide" id="moreBtn">加载更多</a>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="t-invests">
+{{if !list.length}}
+    <li class="item">
+        <p class="fn-tac">没有相关记录..</p>
+    </li>
+{{/if}}
+{{each list as item i}}
+    <li class="item">
+        <div class="mark">转</div>
+        <div class="hd">
+            <a href="/mobile/transfer.html?tradeDetailId={{item.tradeDetailId}}">{{item.tradeName}}</a>
+        </div>
+        <ul class="ul fn-clear">
+            <li>
+                <p>转让年利率</p>
+                <p class="str fn-fs20">{{(item.realProfitRate*100).toFixed(2)}}%</p>
+            </li>
+            <li>
+                <p>剩余/总期限</p>
+                <p class="str fn-fs20">{{item.leftTime}}/{{item.allTime}}天</p>
+            </li>
+            <li>
+                <p>转让金额</p>
+                <p class="str fn-fs20">{{(item.amount.replace(/\,/g,'') >= 10000)?item.amount.replace(/\,/g,'')/10000+'万':item.amount.replace(/\,/g,'')}}元</p>
+            </li>
+        </ul>
+        <p>还款方式：<span class="str">{{item.repayDivisionWay}}</span></p>
+        <p><a class="button button-fill button-danger fn-right" href="/mobile/transfer.html?tradeDetailId={{item.tradeDetailId}}">{{item.status}}</a>起购时间：{{item.releaseDate}}</p>
+    </li>
+{{/each}}
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageTransfers');
+</script>
+
+</body>
+</html>

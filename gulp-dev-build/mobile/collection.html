@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav" id="uiHeader"></header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content" id="user">
+        <div class="content-block">
+            <p class="buttons-row" id="nav">
+                <a href="/mobile/collection.html?status=0" alias="0" class="button button-round">待收款</a>
+                <a href="/mobile/collection.html?status=1" alias="1" class="button button-round">已收款</a>
+            </p>
+            <div class="list-block media-list">
+                <ul id="list"></ul>
+            </div>
+        </div>
+        <div class="content-block">
+            <a href="javascript:void(0);" class="button button-danger button-fill" id="moreBtn">加载更多</a>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="t-list">
+    {{if !list.length}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-subtitle fn-tac">没有相关记录..</div>
+            </div>
+        </li>
+    {{/if}}
+    {{each list as item i}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title-row">
+                    <div class="item-title">{{item.tradeName}}</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">{{if status=='0'}}预计{{/if}}收款金额</div>
+                    <div class="item-after">{{item.amount}}元</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">{{if status=='0'}}预计{{/if}}本金</div>
+                    <div class="item-after">{{item.repayPrincipalAmount}}元</div>
+                </div>
+                <div class="item-title-row">
+                    <div class="item-title">{{if status=='0'}}预计{{/if}}收益</div>
+                    <div class="item-after">{{item.interest}}元</div>
+                </div>
+                <div class="item-subtitle">{{if status=='0'}}预计{{/if}}到账时间：{{item.repayDate?item.repayDate:'暂无'}}</div>
+            </div>
+        </li>
+    {{/each}}
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageCollection');
+</script>
+
+</body>
+</html>

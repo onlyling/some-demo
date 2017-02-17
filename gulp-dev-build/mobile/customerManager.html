@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav" id="uiHeader"></header>
+    <!-- 工具栏 -->
+    <nav class="bar bar-tab invest-bar">
+        <a href="/mobile/investorOpenAccount.html" class="button button-danger button-fill button-big">投资人开户</a>
+    </nav>
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <div class="list-block">
+            <ul id="list"></ul>
+        </div>
+        <div class="content-block">
+            <a href="javascript:void(0);" class="button button-danger button-fill" id="moreBtn">加载更多</a>
+        </div>
+        <div class="content-block">
+            <p>累计已发展投资人：<span class="fn-f30 fn-mr5" id="investorsCount">n</span>人</p>
+            <a href="javascript:void(0);" class="button button-danger button-fill fn-hide" id="moreBtn">加载更多</a>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="t-list">
+    {{each investorManage as item i}}
+    <li>
+        <a class="item-content item-link" href="/mobile/customerBaseInfo.html?customerId={{item.customerId}}">
+            <div class="item-media"><i class="icon icon-me"></i></div>
+            <div class="item-inner">
+                <div class="item-title">{{item.userName}}({{item.realName?item.realName:'未实名'}})</div>
+                <div class="item-after">{{item.profit}}</div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageCustomerManager');
+</script>
+
+</body>
+</html>

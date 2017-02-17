@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="/mobile/css/app.css">
+</head>
+<body>
+<!-- page 容器 -->
+<div class="page">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav ui-bar-nav">
+        <a class="button button-link button-nav pull-left back" href="javascript:window.history.back();">
+            <span class="icon icon-left"></span>
+        </a>
+        <a class="icon icon-me pull-right" href="/mobile/user.html"></a>
+        <h1 class="title">债权转让</h1>
+    </header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <div id="step1">
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            加载中...
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-50">
+                        <a href="javascript:window.history.back();" class="button button-big button-fill button-danger">暂不申请</a>
+                    </div>
+                    <div class="col-50">
+                        <input class="button button-big button-fill button-success" type="button" id="apply" value="确认申请">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fn-hide" id="step2">
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            加载中...
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-50">
+                        <input class="button button-big button-fill button-danger" type="button" id="revamp" value="返回修改">
+                    </div>
+                    <div class="col-50">
+                        <input class="button button-big button-fill button-success" type="button" id="affirm" value="确认申请">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 查看更多 弹出层 -->
+<div class="popup popup-totransfered bg-eee">
+    <div class="content-block">
+        <div class="fn-mb20" id="popupBox"></div>
+        <a class="button button-danger button-fill close-popup" href="javascript:void(0);">关闭</a>
+    </div>
+</div>
+<script type="text/html" id="t-step1">
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">剩余本金</div>
+                <div class="item-after">
+                    &yen;{{receivePrincipalMoney}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">持有期待收利息</div>
+                <div class="item-after">
+                    &yen;{{receivableMoney}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">合计</div>
+                <div class="item-after">
+                    &yen;{{receivableMoney}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title label">转让价格</div>
+                <div class="item-input">
+                    <input type="text" id="amount" placeholder="输入转让价格">
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            转让价格只能在{{downMoney}}~{{upMoney}} 元之间
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">预期年化利率</div>
+                <div class="item-after">
+                    {{interestRate}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">转让手续费</div>
+                <div class="item-after">
+                    {{chargeTypeMessage}}({{quota}})
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">转让截止日期</div>
+                <div class="item-after">
+                    {{deadline}}
+                </div>
+            </div>
+        </div>
+    </li>
+</script>
+<script type="text/html" id="t-step2">
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">转让价格</div>
+                <div class="item-after">
+                    &yen;{{amount}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">转让手续费</div>
+                <div class="item-after">
+                    &yen;{{fee}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">预期年化利率</div>
+                <div class="item-after">
+                    {{buyerDebtProfitRate}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">转让截止日期</div>
+                <div class="item-after">
+                    {{deadline}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-content">
+            超过截止日期未成交将被系统撤销
+        </div>
+    </li>
+</script>
+<script type="text/javascript" src="/mobile/lib/app.js" charset="utf-8"></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/mobile/lib/seaconfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.use('pageTotransfered');
+</script>
+
+</body>
+</html>

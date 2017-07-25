@@ -11,12 +11,6 @@ const initInstance = () => {
     })
 }
 
-const defaultStyle = {}
-
-const errorStyle = {
-    'background-color': '#f6383a'
-}
-
 const startProgress = (show, width, err) => {
     if (!!!instance) {
         initInstance()
@@ -32,6 +26,12 @@ const startProgress = (show, width, err) => {
             instance.width = width + '%'
         }
     })
+}
+
+const defaultStyle = {}
+
+const errorStyle = {
+    'background-color': '#f6383a'
 }
 
 const defaultSpeed = 1 // 普通过渡速度

@@ -12,7 +12,7 @@
 import Vue from 'vue'
 import Progress from 'your path /vue-progress'
 
-Vue.use(Vue)
+Vue.use(Progress)
 
 // new 之前使用
 Vue.prototype.$progress.start()  // 默认进度 80%

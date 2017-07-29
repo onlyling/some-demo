@@ -1,0 +1,23 @@
+.mobile-toast {
+    background: rgba(0, 0, 0, .8);
+    border-radius: 1rem;
+    color: white;
+    padding: .5rem .8rem;
+    line-height: 1rem;
+    font-size: 0.8rem;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    margin-left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 1200;
+    transform: translate3d(-50%, -50%, 0) scale(0.815);
+    transition-duration: .4s;
+    opacity: 0;
+
+    &.toast-active {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+        visibility: visible;
+        opacity: 1;
+    }
+}

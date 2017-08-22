@@ -1,3 +1,5 @@
+import './actions.less'
+
 let DOM_BODY = document.body
 
 const removeDOM = (dom) => {

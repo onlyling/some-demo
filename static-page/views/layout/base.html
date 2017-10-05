@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <link rel="stylesheet" type="text/css" href="{{rootUrl}}public/lib/bootstrap/css/bootstrap.min.css">
+    <title>{% block title %}{% endblock %}</title>
+    {% block headerCss %}{% endblock %}
+</head>
+<body>
+
+    {% block content %}{% endblock %}
+
+    <script type="text/javascript" src="{{rootUrl}}public/lib/jquery/jquery.1.12.4.js"></script>
+    <script type="text/javascript" src="{{rootUrl}}public/lib/bootstrap/js/bootstrap.min.js"></script>
+    {% block footerScript %}{% endblock %}
+
+</body>
+</html>

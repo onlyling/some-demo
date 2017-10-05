@@ -1,0 +1,15 @@
+{
+  "name": "wisdom",
+  "version": "1.0.0",
+  "description": "简单的发布成静态文件访问方式",
+  "main": "http.js",
+  "scripts": {
+    "dev": "node app.js",
+    "dist": "node dist.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nunjucks": "^3.0.1"
+  }
+}

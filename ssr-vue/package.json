@@ -1,0 +1,23 @@
+{
+  "name": "ssr-vue",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "nuxt": "^1.0.0-rc11"
+  },
+  "devDependencies": {
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5"
+  }
+}

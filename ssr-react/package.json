@@ -1,0 +1,35 @@
+{
+  "name": "ssr-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "PORT=3303 node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "mobx": "^3.3.3",
+    "mobx-react": "^4.3.5",
+    "next": "^4.2.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.2.1",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "cssnano": "^3.10.0",
+    "glob": "^7.1.2",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-loader": "^2.0.9",
+    "raw-loader": "^0.5.1"
+  }
+}

@@ -1,0 +1,25 @@
+<view class="picker-time-box {{pickerShow ? 'active' : ''}}">
+    <view class="picker-overlay" bindtap="__closePicker"></view>
+    <view class="time-content">
+        <picker-view value="{{pickerTime}}" indicator-style="height: 40px;" class="select-box" bindchange="__change">
+            <picker-view-column>
+                <view wx:for="{{pickerYears}}" wx:key="{{index}}" class="select-item">{{item}}年</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{pickerMonths}}" wx:key="{{index}}" class="select-item">{{item}}月</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{pickerDays}}" wx:key="{{index}}" class="select-item">{{item}}日</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{pickerHours}}" wx:key="{{index}}" class="select-item">{{item}}时</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{pickerMinutes}}" wx:key="{{index}}" class="select-item">{{item}}分</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{pickerSeconds}}" wx:key="{{index}}" class="select-item">{{item}}秒</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>

@@ -1,0 +1,40 @@
+.picker-time-box {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1999;
+    display: none;
+}
+
+.picker-time-box.active {
+    display: block;
+}
+
+.picker-time-box .picker-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.picker-time-box .time-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 400rpx;
+    background-color: #fff;
+}
+
+.picker-time-box .select-box {
+    width: 100%;
+    height: 100%;
+}
+
+.picker-time-box .select-item {
+    line-height: 40px;
+    text-align: center;
+}

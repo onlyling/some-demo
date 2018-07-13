@@ -3,6 +3,6 @@
         <slot></slot>
     </view>
     <view class="sideslip-tool">
-        <view class="btn {{item.color}}" style="transform: translateX({{item.type === 'del' ? translateXDel : translateXEdit}}px); transition: transform {{transitionTime / 1000}}s" animation="{{item.type === 'del' ? animationXDel : animationXEdit}}" wx:key="index" wx:for="{{__btns}}" wx:for-index="index" wx:for-item="item" data-type="{{item.type}}" bindtap="__taped">{{item.text}}</view>
+        <view class="btn {{item.color}}" style="transform: translateX({{item.type === 'del' ? translateXDel : translateXEdit}}px); transition: transform {{transitionTime / 1000}}s" wx:key="index" wx:for="{{__btns}}" wx:for-index="index" wx:for-item="item" data-type="{{item.type}}" bindtap="__taped">{{item.text}}</view>
     </view>
 </view>

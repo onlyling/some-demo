@@ -1,0 +1,17 @@
+{
+  "name": "parse-markdown",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node parse.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "highlight.js": "^9.12.0",
+    "html-minifier": "^3.5.20",
+    "marked": "^0.5.0"
+  }
+}

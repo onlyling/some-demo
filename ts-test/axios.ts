@@ -17,12 +17,10 @@ interface BaseAjax {
   post: <T>(url: string, data?: object, config?: object) => Promise<T>;
 }
 
-
-
 const BASE_URL = '/api/v1';
 
 const GetAxios = () => {
-  const instance = Axios.create({
+  const instance: AxiosInstance = Axios.create({
     baseURL: `${BASE_URL}`
   });
 
@@ -54,12 +52,14 @@ const GetAxios = () => {
     }
   );
 
-  const request = function<T = BaseResponse>(config: AxiosRequestConfig = {}): Promise<T> {
+  const request = function<T>(config: AxiosRequestConfig = {}): Promise<T> {
     return new Promise((resolve, reject) => {
       instance
         .request<BaseResponse>(config)
         .then((data) => {
-          const __data = data.data;
+          // 通过断言转换类型
+          // 感觉这里这里有坑
+          const __data = data.data as any;
           if (__data.success) {
             resolve(__data);
           } else {

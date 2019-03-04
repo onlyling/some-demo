@@ -1,0 +1,29 @@
+{
+  "name": "git-commitizen",
+  "version": "1.1.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "npx git-cz",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.coding.net:onlyling/git-commitizen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "commitizen": "^3.0.7",
+    "cz-customizable": "^5.3.0",
+    "standard-version": "^5.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path22": "node_modules/cz-conventional-changelog",
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "dependencies": {}
+}

@@ -14,5 +14,6 @@
 * [vue-progress](./vue-progress) Vue 顶部进度小组件
 * [vue-toast](./vue-toast) Vue 移动端 一个 toast 小组件
 * [typescript-width-axios](./typescript-width-axios) Typescript 与 axios 友好的搭配使用
+* [git-commitizen](./git-commitizen) 优雅的提交你的 Git Commit Message
 
 就是这样，喵~

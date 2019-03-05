@@ -76,3 +76,9 @@
 ![](./img/release_1.png)
 
 目前感觉已经够用了。
+
+## 其他
+
+如果要配合 `standard-version` 生成日志，自定义规则里面 value 值需要对应上 `conventional-changelog`。
+
+> uses conventional-changelog to update CHANGELOG.md

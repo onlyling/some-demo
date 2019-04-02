@@ -29,9 +29,11 @@ const getAxiosInstance = (): AxiosInstance => {
       console.log('-- error --');
       console.log(error);
       console.log('-- error --');
-      return Promise.reject({
-        success: false,
-        msg: error
+      return Promise.resolve({
+        data: {
+          success: false,
+          msg: typeof error === 'string' ? error : error.message
+        }
       });
     }
   );

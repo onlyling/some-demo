@@ -1,0 +1,186 @@
+.test-boxx {
+  padding: 40px;
+}
+
+@mixin r-shadow($x, $y) {
+  box-shadow: $x $y 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+@mixin r-gradient($x, $y) {
+  background: radial-gradient(at $x $y, #e1e1e1 50%, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+}
+
+.test-box {
+  width: 200px;
+  margin: 0 auto;
+  position: relative;
+
+  $__width: 40px;
+  $__widthH: $__width/2;
+  $__rShadow: 1px;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: $__widthH;
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ctx {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+  }
+
+  .s-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    height: $__widthH;
+
+    &::before {
+      top: 0;
+      border-bottom-right-radius: 100%;
+      @include r-gradient(0, 0);
+    }
+    &::after {
+      top: 0;
+      border-bottom-left-radius: 100%;
+      @include r-gradient(100%, 0);
+    }
+  }
+
+  .s-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    height: $__widthH;
+
+    &::before {
+      bottom: 0;
+      border-top-right-radius: 100%;
+      @include r-gradient(0, 100%);
+    }
+    &::after {
+      bottom: 0;
+      border-top-left-radius: 100%;
+      @include r-gradient(100%, 100%);
+    }
+  }
+
+  .s-header,
+  .s-footer {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: $__widthH;
+      height: $__widthH;
+      background-color: #e1e1e1;
+      z-index: 3;
+    }
+
+    &::before {
+      left: 0;
+    }
+    &::after {
+      right: -$__widthH;
+      right: 0;
+    }
+  }
+}
+
+.test-box2 {
+  width: 200px;
+  margin: 0 auto;
+  position: relative;
+
+  $__width: 40px;
+  $__widthH: $__width/2;
+  $__rShadow: 1px;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: $__widthH;
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ctx {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+  }
+
+  .s-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    height: $__widthH;
+
+    &::before {
+      top: -$__widthH;
+      border-bottom-right-radius: 50%;
+      @include r-shadow(-$__rShadow, -$__rShadow);
+    }
+    &::after {
+      top: -$__widthH;
+      border-bottom-left-radius: 50%;
+      @include r-shadow($__rShadow, -$__rShadow);
+    }
+  }
+
+  .s-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    height: $__widthH;
+
+    &::before {
+      bottom: -$__widthH;
+      border-top-right-radius: 50%;
+      @include r-shadow(-$__rShadow, $__rShadow);
+    }
+    &::after {
+      bottom: -$__widthH;
+      border-top-left-radius: 50%;
+      @include r-shadow($__rShadow, $__rShadow);
+    }
+  }
+
+  .s-header,
+  .s-footer {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: $__width;
+      height: $__width;
+      background-color: #e1e1e1;
+      z-index: 3;
+    }
+
+    &::before {
+      left: -$__widthH;
+    }
+    &::after {
+      right: -$__widthH;
+    }
+  }
+}

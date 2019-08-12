@@ -1,0 +1,67 @@
+.noscroll {
+  overflow: hidden;
+  body {
+    overflow: hidden;
+  }
+}
+
+.modal-mobile {
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &.active {
+    display: block;
+    opacity: 0;
+    transition: all 0.5s ease-in;
+    transform: translateZ(0);
+
+    &.in {
+      opacity: 1;
+    }
+  }
+
+  &.modal-input {
+    position: absolute;
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.65;
+    z-index: 9;
+  }
+
+  .modal-dialog {
+    position: relative;
+    z-index: 10;
+    padding: 0 30px;
+  }
+
+  .modal-content {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .modal-title {
+    position: relative;
+  }
+
+  .modal-close {
+    @_width: 20px;
+    position: absolute;
+    right: 0;
+    height: @_width;
+    width: @_width;
+    top: -@_width;
+    border-radius: @_width / 2;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}

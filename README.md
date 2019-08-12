@@ -9,6 +9,7 @@
 * [git-commitizen](./git-commitizen) 优雅的提交你的 Git Commit Message
 * [gulp-dev-build](./gulp-dev-build) gulp、seajs、less 多页
 * [parse-markdown](./parse-markdown) 解析 markdown 语法变成 HTML 代码
+* [react-modal-mobile](./react-modal-mobile) React 移动端通用弹层组件
 * [sideslip-delete](./sideslip-delete) 微信小程序 侧滑删除、编辑
 * [static-page](./static-page) Node.js + nunjucks 写页面，发布成带有连接的静态页面
 * [typescript-width-axios](./typescript-width-axios) Typescript 与 axios 友好的搭配使用

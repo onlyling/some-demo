@@ -55,6 +55,7 @@ export default class Node extends React.Component {
     super(props);
     this.el = document.createElement('div');
     this.modal = React.createRef();
+    this.backdrop = React.createRef();
     this.state = {
       curTop: 0, // 当弹窗内有输入框时，转变为 absolute 定位，计算当前 top 值
       curHeight: 0, // 当弹窗内有输入框时，计算可以显示的高度
@@ -66,9 +67,12 @@ export default class Node extends React.Component {
 
   componentDidMount() {
     EL_BODY.appendChild(this.el);
+    // iOS 移动端弹出遮罩层后 禁止页面滚动
+    this.backdrop.current.addEventListener('touchmove', this.onTouchmove);
   }
 
   componentWillUnmount() {
+    this.backdrop.current.removeEventListener('touchmove', this.onTouchmove);
     EL_BODY.removeChild(this.el);
     // 来不及关闭被销毁
     if (this.state.visible) {
@@ -140,6 +144,10 @@ export default class Node extends React.Component {
     }
   }
 
+  onTouchmove = (event) => {
+    event.preventDefault();
+  };
+
   renderModal() {
     const { curTop, curHeight, visible, clns, curIndex } = this.state;
     const { onCancel, title, modalInput } = this.props;
@@ -155,7 +163,7 @@ export default class Node extends React.Component {
         }}
         ref={this.modal}
       >
-        <div className="modal-backdrop" />
+        <div className="modal-backdrop" ref={this.backdrop} />
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-title">

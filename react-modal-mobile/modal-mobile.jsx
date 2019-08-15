@@ -31,7 +31,7 @@ const doNoscroll = (no) => {
     }
   }
   const classNames = className.split(' ');
-  const noClassNames = className.split(' ').filter((c) => c === CLASSNAME_NOSCROLL);
+  const noClassNames = classNames.filter((c) => c === CLASSNAME_NOSCROLL);
   // 不需要滚动
   if (no && noClassNames.length === 0) {
     EL_HTML.className += ` ${CLASSNAME_NOSCROLL}`;

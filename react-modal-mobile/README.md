@@ -44,7 +44,7 @@ iOS 移动端设备输入框在 fixed 的元素上定位有误。
 ## 使用方式
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import ModalMobile from '../../components/modal-mobile/modal-mobile';
 
@@ -66,6 +66,52 @@ const DemoNode = () => {
 		</div>
 	);
 }
+
+const DemoNode2 = () => {
+	const [modalV, setModalV] = useState(false);
+	const [name, setName] = useState('');
+	const backTimer = useRef(null);
+	const CLASSNAME_NOSCROLL = 'noscroll';
+	
+	const onClickShowModal = () => {
+		setModalV(true);
+	};
+	const onClickHideModal = () => {
+		setModalV(false);
+	};
+	
+	const onInputChange = (e) => {
+		setName(e.target.value);
+	}
+	const onInputFocus = () => {
+		clearTimeout(backTimer.current);
+	}
+	const onInputBlur = () => {
+		backTimer.current.setTimout(() => {
+			// iOS 键盘收起，页面并不会回弹
+			if (!!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/))  {
+				return;
+			}
+			
+			const EL_HTML = document.getElementsByTagName('html')[0];
+			const classNames = EL_HTML.className.split(' ');
+			
+			EL_HTML.className = classNames.filter((c) => !!c && c !== CLASSNAME_NOSCROLL).join(' ');
+			
+			// 按实际情况计算回滚多少
+			window.scrollTo(0, 0);
+			
+			EL_HTML.className = classNames.join(' ');
+		}, 200);
+	}
+	
+	return (
+		<div>
+			<p><span onClick={onClickShowModal}>show modal</span></p>
+			<ModalMobile visible={modalV} onCancel={onClickHideModal}>
+				<p><input type="text" value={name} onChange={onInputChange} /></p>
+			</ModalMobile>
+		</div>
+	);
+}
 ```
-
-

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>debounce</title>
+  </head>
+  <body>
+    <div
+      id="j-test"
+      style="
+        background-color: #f30;
+        width: 300px;
+        height: 300px;
+        line-height: 300px;
+        text-align: center;
+        color: #fff;
+      "
+    >
+      1
+    </div>
+  </body>
+
+  <script src="./debounce.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const jEle = document.querySelector('#j-test');
+      let count = 0;
+      jEle.addEventListener(
+        'mousemove',
+        debounce(() => {
+          count += 1;
+
+          jEle.innerHTML = count;
+        }, 500),
+      );
+    });
+  </script>
+</html>

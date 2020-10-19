@@ -1,0 +1,12 @@
+{
+  "name": "underscore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "debounce": "tsc debounce/debounce.ts",
+    "throttle": "tsc throttle/throttle.ts"
+  },
+  "author": "",
+  "license": "ISC"
+}

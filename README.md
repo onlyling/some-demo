@@ -18,5 +18,35 @@
 * [vue-progress](./vue-progress) Vue 顶部进度小组件
 * [vue-toast](./vue-toast) Vue 移动端 一个 toast 小组件
 
-
 就是这样，喵~
+
+# 其他推荐链接
+
+## 文档
+
+Alloyteam 代码规范：https://github.com/AlloyTeam/CodeGuide
+
+JSDoc 中文文档：https://jsdoc.zcopy.site
+
+## 博客
+
+凹凸实验室：https://aotu.io
+
+前端精读周刊：https://github.com/dt-fe/weekly
+
+奇舞周刊：https://weekly.75.team
+
+政采云前端小报：https://weekly.zoo.team
+
+## JavaScript
+
+冴羽：https://juejin.im/user/712139234359182/posts
+
+## React
+
+卡颂：https://juejin.im/user/1943592291009511
+
+React 技术揭秘：https://react.iamkasong.com
+
+ssh_晨曦时梦见兮：https://juejin.im/user/2330620350708823
+

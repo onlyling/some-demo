@@ -58,6 +58,6 @@ ssh_晨曦时梦见兮：https://juejin.im/user/2330620350708823
 
 PostCSS 是个什么鬼东西：https://segmentfault.com/a/1190000003909268
 
-webpack 自动识别 css modules(cssModule混用)：https://www.cnblogs.com/hl1223/p/13073628.html
+webpack 中实现自动识别 CSS Modules：https://mp.weixin.qq.com/s/DqsXf-4iOfI0-pk4twsUIQ
 
 探讨浏览器指纹：https://zhuanlan.zhihu.com/p/282922459

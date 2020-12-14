@@ -1,0 +1,31 @@
+@import '~antd/es/style/themes/default.less';
+@import '~@/assets/less/var.less';
+
+.g-page-width {
+  min-width: @page-min-width;
+  width: @page-min-width;
+}
+
+.g-rich-text {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: rgba(0, 0, 0, 0.85);
+
+  img {
+    max-width: 100%;
+  }
+
+  table,
+  td,
+  th {
+    border: 1px solid @border-color-base;
+  }
+
+  table {
+    border-spacing: 0;
+    background-color: transparent;
+    width: 100%;
+  }
+}

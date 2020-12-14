@@ -1,0 +1,40 @@
+@import '~antd/es/style/themes/default.less';
+@import '~@/assets/less/var.less';
+
+.base-layout-header {
+  background-color: @primary-color;
+  color: #fff;
+
+  &_content {
+    height: 60px;
+    padding: 10px 0;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+
+  &_logo {
+    height: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  &_name {
+    display: inline-block;
+    line-height: 40px;
+    vertical-align: middle;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+
+    a {
+      color: #fff;
+
+      &:hover {
+        color: fade(#fff, 80%);
+      }
+    }
+  }
+}

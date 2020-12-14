@@ -1,0 +1,41 @@
+@import '~antd/es/style/themes/default.less';
+@import '~@/assets/less/var.less';
+
+.base-layout-footer {
+  &_info {
+    border-bottom: 1px solid @border-color-base;
+    margin: 0 auto;
+    display: flex;
+    padding: 24px 0;
+
+    &-item {
+      flex: 1;
+      text-align: center;
+      color: @primary-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+    }
+
+    &-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: #fff;
+      background-color: @primary-color;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+  }
+
+  &_copyright {
+    text-align: center;
+    color: @text-color-secondary;
+    line-height: 40px;
+    font-size: 12px;
+  }
+}

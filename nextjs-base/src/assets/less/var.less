@@ -1,0 +1,30 @@
+@import './antd-custom.less';
+
+@page-min-width: 1200px;
+@page-padding: 20px;
+
+@page-padding-mobile: 16px;
+@rem-base-mobile: 37.5rem;
+
+.bg-img(@w, @h) {
+  width: @w;
+  height: @h;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mixins-hairline-bottom(@color: @border-color-base) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: @border-color-base;
+    transform: scale(1, 0.5);
+  }
+}

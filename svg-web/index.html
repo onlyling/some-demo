@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <title>SVG - WEB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css"> 
+	<!--[if lt IE 9]>
+	<script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+	<![endif]-->
+	<style type="text/css">
+		p {
+			margin-bottom: 1em;
+		}
+	</style>
+</head>
+<body>
+	<h2>默认一个空白 svg</h2>
+
+	<div style="background-color: #690;">
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;"></svg>
+	</div>
+
+	<br />
+
+	<div style="background-color: #690;">
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block;"></svg>
+	</div>
+
+	<p>Chrome Safari 浏览器默认 300*150</p>
+
+	<p>和 img 一样，默认情况会高出一些像素</p>
+
+	<br />
+
+	<h2>矩形 rect</h2>
+
+	<div style="background-color: #690;">
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<rect width="200" height="150" fill="none" stroke-width="6" stroke="#666"></rect>
+		</svg>
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<rect width="200" height="150" fill="#000" fill-opacity="0.5"></rect>
+		</svg>
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<rect width="200" height="150" fill="rgba(0,0,0,0.5)"></rect>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<rect x="0.5" y="0.5" width="200" height="149" fill="none" stroke-width="1" stroke="#000"></rect>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<rect x="1" y="1" width="200" height="148" fill="none" stroke-width="2" stroke="#000" stroke-opacity="0.5"></rect>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<rect x="1" y="1" width="200" height="148" fill="none" stroke-width="2" stroke="rgba(0,0,0,0.5)"></rect>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<rect x="1" y="1" rx="10" ry="10" width="200" height="148" fill="none" stroke-width="2" stroke="rgba(0,0,0,0.5)"></rect>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<rect x="1" y="1" rx="20" ry="10" width="200" height="148" fill="none" stroke-width="2" stroke="rgba(0,0,0,0.5)"></rect>
+		</svg>
+		<br />
+	</div>
+
+	<br />
+
+	<p>rect 默认黑色填充。核心属性 width height，没有这两个就不会出现形状。</p>
+
+	<p>「fill="none"」透明一样。</p>
+
+	<p>stroke 按表现看是在元素边缘内湾各扩散半个宽度的方式渲染。如果要完整显示出来，图像的尺寸应该是「矩形尺寸 + stroke-width / 2」。</p>
+
+	<p>x y 是元素起点坐标，为了比较好一像素一像素的渲染，「stroke-width」设置为偶数应该比较好。在两个像素之间画一条线，左右或上线两个像素点只能画半边，边缘虚化。偶数正好占两个像素点。<p>
+
+	<p>「stroke-opacity」边缘填充的透明度，0~1。</p>
+
+	<p>「fill-opacity」内部填充的透明度，0~1。</p>
+
+	<p>「fill」、「stroke」填充颜色是 「rgb」「rgba」「#16进制」。</p>
+
+	<p>「*-opacity」和「rgba」两个方式透明表现上没什么差别。</p>
+
+	<p>rx ry 可以制作圆角，两个值相同就是很圆的。rx ry 从表现上是按照四个角，分别在 x、y 轴相距 n 像素，做一个曲线。</p>
+
+	<br />
+
+	<h2>圆形 circle</h2>
+
+	<div style="background-color: #690;">
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<circle cx="50" cy="50" r="50" fill="none" stroke-width="6" stroke="#666"></circle>
+		</svg>
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<circle cx="50" cy="50" r="50" fill="#000" fill-opacity="0.5"></circle>
+		</svg>
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<circle cx="50" cy="50" r="50" fill="rgba(0,0,0,0.5)"></circle>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<circle cx="50" cy="50" r="49.5" fill="none" stroke-width="1" stroke="#000"></circle>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<circle cx="50" cy="50" r="49" fill="none" stroke-width="2" stroke="#000" stroke-opacity="0.5"></circle>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<circle cx="50" cy="50" r="49" fill="none" stroke-width="2" stroke="rgba(0,0,0,0.5)"></circle>
+		</svg>
+		<br />
+	</div>
+
+	<p>circle 默认黑色填充。核心属性 cx cy r，没有这两个就不会出现形状。</p>
+
+	<p>「fill="none"」透明一样。</p>
+
+	<p>stroke 渲染方式表现和在矩形 rect 中差不多。内外各占/绘制一般。</p>
+
+	<p>填充、边缘应该也是一样的表现。</p>
+
+	<p>通过 r 来控制 stroke 和整个元素视觉大小。</p>
+
+	<br />
+
+	<h2>椭圆 ellipse</h2>
+
+	<div style="background-color: #690;">
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<ellipse cx="50" cy="50" rx="50" ry="60" fill="none" stroke-width="6" stroke="#666"></ellipse>
+			<ellipse cx="180" cy="50" rx="50" ry="40" fill="none" stroke-width="6" stroke="#666"></ellipse>
+		</svg>
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<ellipse cx="50" cy="50" rx="50" ry="60" fill="#000" fill-opacity="0.5"></ellipse>
+		</svg>
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30;">
+			<ellipse cx="50" cy="50" rx="50" ry="40" fill="rgba(0,0,0,0.5)"></ellipse>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<ellipse cx="50" cy="50" rx="49.5" ry="40" fill="none" stroke-width="1" stroke="#000"></ellipse>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<ellipse cx="50" cy="50" rx="49" ry="40" fill="none" stroke-width="2" stroke="#000" stroke-opacity="0.5"></ellipse>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" style="background-color: #f30; display: block; overflow: hidden;margin-left: 20px;">
+			<ellipse cx="50" cy="50" rx="49" ry="40" fill="none" stroke-width="2" stroke="rgba(0,0,0,0.5)"></ellipse>
+		</svg>
+		<br />
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+			<ellipse cx="240" cy="100" rx="220" ry="30" style="fill:purple;" />
+			<ellipse cx="220" cy="70" rx="190" ry="20" style="fill:lime" />
+			<ellipse cx="210" cy="45" rx="170" ry="15" style="fill:yellow" />
+		</svg>
+	</div>
+
+	<p>ellipse 默认黑色填充。核心属性 cx cy rx ry，没有这几个就不会出现形状。</p>
+
+	<p>rx ry 以中小点在 x 轴左右 y 轴上线为边界画一个矩形，按照四个顶点画圆弧、border-radius。</p>
+
+	<p>「fill="none"」透明一样。</p>
+
+	<p>stroke 渲染方式表现和在矩形 rect 中差不多。内外各占/绘制一般。</p>
+
+	<p>填充、边缘应该也是一样的表现。</p>
+
+	<p>通过 rx ry 来控制 stroke 和整个元素视觉大小。</p>
+
+	<br />
+
+	<h2>直线 line</h2>
+
+	<div style="background-color: #690;">
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+			<line x1="10" y1="10" x2="100" y2="100" stroke="#f30" />
+			<line x1="18" y1="18" x2="108" y2="108" stroke="#000" stroke-width="2" />
+			<line x1="14" y1="14" x2="104" y2="104" stroke="rgba(255,255,255,0.5)" stroke-width="1" />
+		</svg>
+	</div>
+
+	<p>line 默认宽 1 像素。核心属性 x1 y1 x2 y2 stroke，没有这几个就不会出现形状。</p>
+
+	<p>stroke 渲染方式表现和在矩形 rect 中差不多。内外各占/绘制一般。</p>
+
+	<p>其他属性也相似。</p>
+</body>
+</html>

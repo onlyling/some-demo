@@ -42,6 +42,12 @@ JSDoc 中文文档：https://jsdoc.zcopy.site
 
 冴羽：https://juejin.im/user/712139234359182/posts
 
+## CSS
+
+Web 字体 font-family 再探秘：https://www.cnblogs.com/coco1s/archive/2019/08/14/11350642.html
+
+CSS 奇技淫巧：https://github.com/chokcoco/iCSS
+
 ## React
 
 卡颂：https://juejin.im/user/1943592291009511

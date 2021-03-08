@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chrome 摄像头测试</title>
+  </head>
+  <body>
+    <div id="main"></div>
+
+    <img id="j-test-img" />
+
+    <p>
+      <button type="button" id="j-test-pause">暂停</button>
+      <button type="button" id="j-test-restart">重新开始</button>
+      <button type="button" id="j-test-photograph">拍照</button>
+      <button type="button" id="j-test-destroy">销毁业务元素</button>
+      <button type="button" id="j-test-reinit">重新初始化</button>
+    </p>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./camera.js"></script>
+    <script>
+      $(function () {
+        // 初始化摄像头
+        var _CameraPhotos = new window.CameraPhotos(
+          document.getElementById("main")
+        );
+
+        // 拍照并显示在 img 上
+        var photograph2img = function () {
+          _CameraPhotos.photograph().then((img) => {
+            // to test img
+            $("#j-test-img").prop("src", img);
+
+            // TODO 上传照片
+            console.log("开始上传 base64 图片");
+
+            console.log(img);
+
+            setTimeout(function () {
+              // 完成匹配
+              _CameraPhotos.destroy();
+
+              // TODO 继续下一步
+              console.log("完成匹配，准备下一步的工作");
+            }, 3000);
+          });
+        };
+        // 开始自动拍照
+        var startAutoPhotograph = function () {
+          _CameraPhotos.startVideo().then(function () {
+            setTimeout(function () {
+              photograph2img();
+            }, 1000);
+          });
+        };
+
+        // 开始调用摄像头
+        startAutoPhotograph();
+
+        // 暂停
+        $("#j-test-pause").on("click", function () {
+          _CameraPhotos.stopVideo();
+        });
+
+        // 重新开始
+        $("#j-test-restart").on("click", function () {
+          startAutoPhotograph();
+        });
+
+        // 手动拍照
+        $("#j-test-photograph").on("click", function () {
+          photograph2img();
+        });
+
+        // 销毁
+        $("#j-test-destroy").on("click", function () {
+          _CameraPhotos.destroy();
+        });
+
+        // 重新初始化
+        $("#j-test-reinit").on("click", function () {          
+          _CameraPhotos.init();
+          startAutoPhotograph();
+        });
+      });
+    </script>
+  </body>
+</html>

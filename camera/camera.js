@@ -56,7 +56,7 @@
     /**
      * 创建、初始化元素
      */
-    init() {
+    init: function () {
       // 避免反复初始化
       if (this.video) {
         this.destroy();
@@ -79,7 +79,7 @@
     /**
      * 创建 video 元素
      */
-    createVideo() {
+    createVideo: function () {
       // 缓存 this，避免作用域问题
       var _this = this;
 
@@ -92,7 +92,7 @@
     /**
      * 创建 canvas 元素
      */
-    createCanvas() {
+    createCanvas: function () {
       // 缓存 this，避免作用域问题
       var _this = this;
 
@@ -129,7 +129,7 @@
             video: { width: _this.options.width, height: _this.options.height },
           },
           function (stream) {
-            // 旧的浏览器可能没有srcObject
+            // 旧的浏览器可能没有 srcObject
             if ("srcObject" in _this.video) {
               _this.video.srcObject = stream;
             } else {

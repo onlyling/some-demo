@@ -1,6 +1,6 @@
 import React from 'react';
-import { GetServerSideProps } from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import type { GetServerSideProps } from 'next';
+import type { ParsedUrlQuery } from 'querystring';
 
 import Head from '@/b-components/head/head';
 import PageError from '@/components/page-error/page-error';

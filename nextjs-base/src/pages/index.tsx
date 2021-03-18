@@ -1,9 +1,10 @@
 import React from 'react';
 import { Button } from 'antd';
 import Link from 'next/link';
-import { GetServerSideProps } from 'next';
+import type { GetServerSideProps } from 'next';
 
-import Fetch, { BaseResponsePaging, buildURL } from '@/apis/fetch';
+import type { BaseResponsePaging} from '@/apis/fetch';
+import Fetch, { buildURL } from '@/apis/fetch';
 
 interface HomeProps {
   data: any[];

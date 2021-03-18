@@ -1,11 +1,13 @@
 import { useMemo } from 'react';
-import { init, RematchDispatch, RematchRootState } from '@rematch/core';
+import type { RematchDispatch, RematchRootState } from '@rematch/core';
+import { init } from '@rematch/core';
 export { useDispatch, useSelector } from 'react-redux';
-import { rootModel, RootModel } from './models';
+import type { RootModel } from './models';
+import { models } from './models';
 
 export const initStore = (initialState = {}) =>
   init({
-    models: rootModel,
+    models: models,
     redux: {
       initialState,
     },
@@ -24,7 +26,6 @@ export const initializeStore = (preloadedState?: any) => {
   // with the current state in the store, and create a new store
   if (preloadedState && store) {
     _store = initStore({
-      // @ts-ignore
       ...store.getState(),
       ...preloadedState,
     });

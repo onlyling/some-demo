@@ -23,14 +23,15 @@ module.exports = {
     'react/self-closing-comp': 1,
     'react/no-danger': 0,
     'jsx-quotes': ['error', 'prefer-double'],
+    '@typescript-eslint/consistent-type-imports': 1,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/explicit-member-accessibility': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/indent': 0,
     '@typescript-eslint/member-delimiter-style': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-use-before-define': 0,
-    '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-unused-vars': [
       2,
       {

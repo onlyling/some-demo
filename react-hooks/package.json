@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "test-c": "jest --coverage"
+    "test-c": "jest --coverage",
+    "test-s": "jest __tests__/use-state.test.ts"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^5.1.0",

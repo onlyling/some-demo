@@ -58,8 +58,10 @@ describe('useAPI', () => {
   test('test manual', async () => {
     const defaultValue = {};
     const defaultParams = { a: 1 };
+    const testFetch = jest.fn(mockFetch1);
+    const testThen = jest.fn(() => {});
     const { result, waitForNextUpdate } = renderHook(() =>
-      useAPI<MockData, MockData>(defaultValue, mockFetch1, {
+      useAPI<MockData, MockData>(defaultValue, testFetch, {
         manual: true,
       }),
     );
@@ -83,12 +85,18 @@ describe('useAPI', () => {
     expect(result.current.data.b).toBe(2);
 
     act(() => {
-      result.current.run(defaultParams);
+      result.current
+        .run(defaultParams)
+        .then(testThen)
+        .catch(() => {});
     });
 
     expect(result.current.loading).toBe(true);
 
     await waitForNextUpdate({ timeout: 600 });
+
+    expect(testFetch).toBeCalledTimes(1);
+    expect(testThen).toBeCalledTimes(1);
 
     expect(result.current.loading).toBe(false);
     expect(result.current.fail).toBe(false);
@@ -96,8 +104,8 @@ describe('useAPI', () => {
     expect(result.current.data.a).toBe(1);
   });
 
-  test('test loading and manual', () => {
-    const { result } = renderHook(() =>
+  test('test loading and manual', async () => {
+    const { result, waitForNextUpdate } = renderHook(() =>
       useAPI<MockData, MockData>({}, mockFetch1, {
         manual: true,
         loading: true,
@@ -105,6 +113,20 @@ describe('useAPI', () => {
     );
 
     expect(result.current.loading).toBe(true);
+    expect(result.current.fail).toBe(false);
+
+    act(() => {
+      result.current
+        .run()
+        .then(() => {})
+        .catch(() => {});
+    });
+
+    expect(result.current.fail).toBe(false);
+
+    await waitForNextUpdate({ timeout: 600 });
+
+    expect(result.current.fail).toBe(false);
   });
 
   test('test fail', async () => {
@@ -121,7 +143,10 @@ describe('useAPI', () => {
     expect(result.current.fail).toBe(true);
 
     act(() => {
-      result.current.run().catch(() => {});
+      result.current
+        .run()
+        .then(() => {})
+        .catch(() => {});
     });
 
     expect(result.current.fail).toBe(false);
@@ -129,5 +154,17 @@ describe('useAPI', () => {
     await waitForNextUpdate({ timeout: 600 });
 
     expect(result.current.fail).toBe(true);
+  });
+
+  test('test no option', async () => {
+    const { result, waitForNextUpdate } = renderHook(() =>
+      useAPI<MockData, MockData>({}, mockFetch1),
+    );
+
+    expect(result.current.loading).toBe(true);
+
+    await waitForNextUpdate({ timeout: 600 });
+
+    expect(result.current.loading).toBe(false);
   });
 });

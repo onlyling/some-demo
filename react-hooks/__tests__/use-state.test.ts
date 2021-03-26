@@ -223,4 +223,16 @@ describe('useState', () => {
     expect(result.current[0].o22).toBe(dataObject);
     expect(result.current[0].o22.a).toBe(1);
   });
+
+  test('test string:unmounted', () => {
+    const { unmount, result } = renderHook(() => useState('1'));
+
+    unmount();
+
+    act(() => {
+      result.current[1]('2');
+    });
+
+    expect(result.current[0]).toBe('1');
+  });
 });

@@ -11,7 +11,9 @@ describe('useDestroyed', () => {
 
   test('test unmounted', async () => {
     const { unmount, result } = renderHook(() => useDestroyed());
+
     unmount();
+
     expect(result.current()).toBe(true);
   });
 });

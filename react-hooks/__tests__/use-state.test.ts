@@ -2,8 +2,8 @@ import { renderHook, act } from '@testing-library/react-hooks';
 
 import useState from '../src/use-state';
 
-describe('use-state', () => {
-  test('string', () => {
+describe('useState', () => {
+  test('test string', () => {
     const { result } = renderHook(() => useState('1'));
 
     act(() => {
@@ -13,7 +13,7 @@ describe('use-state', () => {
     expect(result.current[0]).toBe('2');
   });
 
-  test('string:callback', () => {
+  test('test string:callback', () => {
     const { result } = renderHook(() => useState('1'));
 
     act(() => {
@@ -23,7 +23,7 @@ describe('use-state', () => {
     expect(result.current[0]).toBe('2');
   });
 
-  test('number', () => {
+  test('test number', () => {
     const { result } = renderHook(() => useState(1));
 
     act(() => {
@@ -33,7 +33,7 @@ describe('use-state', () => {
     expect(result.current[0]).toBe(2);
   });
 
-  test('number:callback', () => {
+  test('test number:callback', () => {
     const { result } = renderHook(() => useState(1));
 
     act(() => {
@@ -43,7 +43,7 @@ describe('use-state', () => {
     expect(result.current[0]).toBe(2);
   });
 
-  test('boolean', () => {
+  test('test boolean', () => {
     const { result } = renderHook(() => useState(false));
 
     act(() => {
@@ -53,7 +53,7 @@ describe('use-state', () => {
     expect(result.current[0]).toBe(true);
   });
 
-  test('boolean:callback', () => {
+  test('test boolean:callback', () => {
     const { result } = renderHook(() => useState(false));
 
     act(() => {
@@ -63,7 +63,7 @@ describe('use-state', () => {
     expect(result.current[0]).toBe(true);
   });
 
-  test('array', () => {
+  test('test array', () => {
     const { result } = renderHook(() => useState([1]));
     const data = [1, 2, 3];
 
@@ -74,7 +74,7 @@ describe('use-state', () => {
     expect(result.current[0]).toBe(data);
   });
 
-  test('array:callback', () => {
+  test('test array:callback', () => {
     const { result } = renderHook(() => useState([1]));
     const data = [1, 2, 3];
 
@@ -85,7 +85,7 @@ describe('use-state', () => {
     expect(result.current[0]).toBe(data);
   });
 
-  test('object -> basic data', () => {
+  test('test object -> basic data', () => {
     const dataArray = [1];
     const dataObject = { a: 1 };
     const { result } = renderHook(() =>
@@ -115,7 +115,7 @@ describe('use-state', () => {
     expect(result.current[0].o2).toBe(dataObject);
   });
 
-  test('object:callback -> basic data', () => {
+  test('test object:callback -> basic data', () => {
     const dataArray = [1];
     const dataObject = { a: 1 };
     const { result } = renderHook(() =>
@@ -150,7 +150,7 @@ describe('use-state', () => {
     expect(result.current[0].o2).toBe(dataObject);
   });
 
-  test('object -> reference data', () => {
+  test('test object -> reference data', () => {
     const dataArray = [1];
     const dataObject = { a: 1 };
     const { result } = renderHook(() =>
@@ -185,7 +185,7 @@ describe('use-state', () => {
     expect(result.current[0].o22.a).toBe(1);
   });
 
-  test('object:callback -> reference data', () => {
+  test('test object:callback -> reference data', () => {
     const dataArray = [1];
     const dataObject = { a: 1 };
     const { result } = renderHook(() =>

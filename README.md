@@ -30,8 +30,6 @@ JSDoc 中文文档：https://jsdoc.zcopy.site
 
 ## 博客
 
-凹凸实验室：https://aotu.io
-
 前端精读周刊：https://github.com/dt-fe/weekly
 
 奇舞周刊：https://weekly.75.team
@@ -49,6 +47,10 @@ MDH • 前端情报：https://github.com/fe-cool/news
 Web 字体 font-family 再探秘：https://www.cnblogs.com/coco1s/archive/2019/08/14/11350642.html
 
 CSS 奇技淫巧：https://github.com/chokcoco/iCSS
+
+从浏览器渲染层面解析css3动效优化原理：https://jelly.jd.com/article/6006b1055b6c6a01506c8850
+
+你可能不知道的Animation动画技巧与细节：https://jelly.jd.com/article/6006b1055b6c6a01506c884e
 
 ## React
 

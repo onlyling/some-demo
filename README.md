@@ -38,6 +38,8 @@ JSDoc 中文文档：https://jsdoc.zcopy.site
 
 政采云前端小报：https://weekly.zoo.team
 
+MDH • 前端情报：https://github.com/fe-cool/news
+
 ## JavaScript
 
 冴羽：https://juejin.im/user/712139234359182/posts
@@ -57,6 +59,8 @@ React 技术揭秘：https://react.iamkasong.com
 ssh_晨曦时梦见兮：https://juejin.im/user/2330620350708823
 
 如何写出优秀的 React 代码：https://pengtikui.cn/how-to-write-great-react
+
+React Interview Questions & Answers：https://github.com/sudheerj/reactjs-interview-questions
 
 ## 其他
 

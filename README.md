@@ -64,6 +64,14 @@ ssh_晨曦时梦见兮：https://juejin.im/user/2330620350708823
 
 React Interview Questions & Answers：https://github.com/sudheerj/reactjs-interview-questions
 
+## React Native
+
+如何让你的 React Native 应用在键盘弹出时优雅地响应：https://github.com/rccoder/blog/issues/25
+
+react native打包（android）应用多环境，多包共存实现方案探索：https://juejin.cn/post/6844904098496512014
+
+React Native版本号管理：https://15tar.com/react%20native/2018/03/18/react-native-versioning.html
+
 ## 其他
 
 前端进阶十日谈：https://github.com/junyux/FE-Advance
